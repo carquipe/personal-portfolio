@@ -33,6 +33,9 @@ Este es mi portfolio personalE construido con [Astro](https://astro.build/), dis
 6. Para construir el proyecto, ejecutar `npm run build`
 7. Desplegar en Vercel
 
+## 👁️ Inspiración
+- [**Visual:** Maxence Portfolio](https://maxence.cc/)
+
 ## 📩 Contacto
 - [🧳 LinkedIn](https://www.linkedin.com/in/carlos-quinza/)
 - [📧 Email](mailto:contact@carlosquinza.es)
