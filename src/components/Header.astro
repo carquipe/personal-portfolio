@@ -1,0 +1,61 @@
+---
+const siteTitle = "My Personal Portfolio";
+---
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+    <h1>{siteTitle}</h1>
+</header>
+
+<style>
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 1rem;
+        font-family: 'Mona Sans', sans-serif;
+    }
+
+    nav ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    nav ul li {
+        display: inline;
+        margin-right: 1rem;
+    }
+
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    nav ul li a:hover {
+        text-decoration: underline;
+    }
+
+    @font-face {
+    font-family: 'Mona Sans';
+    src:
+      url('/src/assets/fonts/Mona-Sans.woff2') format('woff2 supports variations'),
+      url('/src/assets/fonts/Mona-Sans.woff2') format('woff2-variations');
+    font-weight: 200 900;
+    font-stretch: 75% 125%;
+  }
+
+  @font-face {
+    font-family: 'Hubot Sans';
+    src:
+      url('/src/assets/fonts/Hubot-Sans.woff2') format('woff2 supports variations'),
+      url('/src/assets/fonts/Hubot-Sans.woff2') format('woff2-variations');
+    font-weight: 200 900;
+    font-stretch: 75% 125%;
+  }
+</style>

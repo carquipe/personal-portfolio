@@ -10,6 +10,12 @@ Este es mi portfolio personalE construido con [Astro](https://astro.build/), dis
 - 🌓 Modo oscuro / claro
 - 📂 Gestión de contenido con Strapi 
 - 🎨 Diseño responsive
+### Fuentes
+- [Mona Sans Family](https://github.com/github/mona-sans?tab=readme-ov-file)
+- [Hubot Sans Family](https://github.com/github/hubot-sans?tab=readme-ov-file)
+
+### Patrones usados
+- Definición de alias para paths en `tsconfig.json`
 
 ## ⚒️ Tecnologías
 - **Framework** Astro 5
