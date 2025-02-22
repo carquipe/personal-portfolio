@@ -1,61 +1,82 @@
 ---
-const siteTitle = "My Personal Portfolio";
+import { Image } from 'astro:assets'
+import personalLogo from '@/assets/personal.webp'
+
+import Navigation from '@/components/Navigation.astro'
+
+import MailIcon from '@/assets/MailIcon.astro'
+import ToggleMenu from '@/components/ToggleMenu.astro'
 ---
 
-<header>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/projects">Projects</a></li>
-            <li><a href="/contact">Contact</a></li>
-        </ul>
-    </nav>
-    <h1>{siteTitle}</h1>
+<header class="bg-white shadow-sm fixed w-full">
+    <div class=" mx-auto h-20 flex items-center justify-between px-4 py-3">
+
+        <div class="flex items-center justify-between p-2 border-black border-[1.5px] rounded-md gap-3">
+            <a href="#" class="">
+                <Image class="h-8 w-auto rounded-md" src={personalLogo} alt="">
+                </a>
+                <span class="text-sm font-semibold sr-only md:not-sr-only">Carlos Quinzá</span>
+        </div>
+        <div class="flex items-center md:hidden">
+            <ToggleMenu />
+        </div>
+        <nav class="hidden md:flex">
+            <Navigation />
+        </nav>
+
+        <div class="flex sr-only md:not-sr-only">
+            
+            <!-- <a class="hover:bg-gradient-to-tr hover:from-purple-500 hover:to-blue-500 hover: transition duration-500 border-[1.5px] hover:text-white p-3 rounded-md" href="#"  -->
+            <a class="relative py-2 px-2 border-[1.5px] text-gray-600 text-base font-bold overflow-hidden bg-white rounded-md transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-black hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-md hover:before:left-0" href="#">
+                <MailIcon/> 
+            </a>  
+        </div>
+    </di>
+
 </header>
 
 <style>
-    header {
-        background-color: #333;
-        color: #fff;
-        padding: 1rem;
-        font-family: 'Mona Sans', sans-serif;
+    html {
+        font-family: 'Hubot Sans', sans-serif;
     }
 
-    nav ul {
-        list-style: none;
-        padding: 0;
-    }
 
-    nav ul li {
-        display: inline;
-        margin-right: 1rem;
-    }
-
-    nav ul li a {
-        color: #fff;
-        text-decoration: none;
-    }
-
-    nav ul li a:hover {
-        text-decoration: underline;
-    }
-
-    @font-face {
-    font-family: 'Mona Sans';
-    src:
-      url('/src/assets/fonts/Mona-Sans.woff2') format('woff2 supports variations'),
-      url('/src/assets/fonts/Mona-Sans.woff2') format('woff2-variations');
-    font-weight: 200 900;
-    font-stretch: 75% 125%;
-  }
-
-  @font-face {
-    font-family: 'Hubot Sans';
-    src:
-      url('/src/assets/fonts/Hubot-Sans.woff2') format('woff2 supports variations'),
-      url('/src/assets/fonts/Hubot-Sans.woff2') format('woff2-variations');
-    font-weight: 200 900;
-    font-stretch: 75% 125%;
-  }
 </style>
+
+
+<!-- 
+
+
+<header class="bg-white">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <div class="flex lg:flex-1">
+        <a href="#" class="-m-1.5 p-1.5">
+          <span class="sr-only">Carlos Quinzá</span>
+          <Image class="h-8 w-auto rounded-2xl" src={personalLogo} alt="">
+        </a>
+      </div>
+      <div class="flex lg:hidden">
+        <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+          <span class="sr-only">Open main menu</span>
+          <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+      <div class="hidden lg:flex lg:gap-x-12">
+
+  
+        <a href="#" class="text-sm/6 font-semibold text-gray-900 text-">Inicio</a>
+        <a href="#" class="text-sm/6 font-semibold text-gray-900">Mis Proyectos</a>
+        <a href="#" class="text-sm/6 font-semibold text-gray-900">Habilidades</a>
+        <a href="#" class="text-sm/6 font-semibold text-gray-900">Recursos</a>
+        <a href="#" class="text-sm/6 font-semibold text-gray-900">Blog</a>
+      </div>
+      <a href="#" class="hidden lg:flex lg:flex-1 lg:justify-end bg-blue-600 rounded-full">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+          </svg>
+      </a>
+    </nav>
+  </header> -->
+  

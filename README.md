@@ -35,6 +35,7 @@ Este es mi portfolio personalE construido con [Astro](https://astro.build/), dis
 
 ## 👁️ Inspiración
 - [**Visual:** Maxence Portfolio](https://maxence.cc/)
+- [**Visual:** Astrowind](https://github.com/onwidget/astrowind)
 
 ## 📩 Contacto
 - [🧳 LinkedIn](https://www.linkedin.com/in/carlos-quinza/)

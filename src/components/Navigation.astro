@@ -1,0 +1,40 @@
+---
+const navItems = [
+  { name: "Inicio", href: "#" },
+  { name: "Proyectos", href: "#" },
+  { name: "Habilidades", href: "#" },
+  { name: "Blog", href: "#" },
+];
+---
+
+<div class="flex nav-links space-x-15">
+  {
+    navItems.map((item, i) => (
+      <a
+        href={item.href}
+        class="hover:scale-110 duration-300 font-semibold text-gray-900 fade-in-up"
+        style={`animation-delay: ${i * 0.4}s; transition:persist`}
+      >
+        {item.name}
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in-up {
+    opacity: 0; /* Inicialmente oculto */
+    animation: fadeInUp 1s forwards;
+  }
+</style>
