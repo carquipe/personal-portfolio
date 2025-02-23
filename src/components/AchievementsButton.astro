@@ -9,7 +9,7 @@ const { title } = Astro.props;
 ---
 
 <a class="card bg-gray-300/50 rounded-md flex" href="#">
-    <div class="group content py-3 px-2 flex flex-row gap-x-2">
+    <div class="group content p-3 flex flex-row gap-x-2">
         <p class="heading"><TrophyIcon sty="size-4" /></p>
         <p class="heading text-xs font-semibold";>{title}</p>
     </div>
@@ -26,7 +26,6 @@ const { title } = Astro.props;
     position: relative;
     display: flex;
     align-items: center;
-    width: 100%;
     overflow: hidden;
     line-height: 1.6;
     transition: all 2.00s cubic-bezier(0.23, 1, 0.32, 1);

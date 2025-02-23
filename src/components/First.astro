@@ -1,42 +1,96 @@
 ---
-import AchievementsButton from './AchievementsButton.astro'
-
+import AchievementsButton from "./AchievementsButton.astro";
 ---
-
-<div 
-    class="
-    flex flex-col lg:flex-row lg:items-center lg:justify-center lg:gap-30 gap-10 w-full">
-    <div class="flex flex-col gap-4">
-        <div style="font-family: 'Mona Sans', sans-serif;" class="flex text-md font-stretch-150%">
-            Hola 🙋🏼‍♂️ Soy Carlos, tengo 31 años y soy
-        </div>
-        <div style="font-family: 'Hubot Sans', sans-serif;" 
-            class="flex font-extrabold text-2xl md:text-4xl font-stretch-200% md:leading-12">
-            <p> Manager IT <br />
-                Arquitecto Software  <br />
-                Desarrollador</p>
-        </div>
-        <div class="flex flex-row gap-4 pt-2">
-            <AchievementsButton title="ScaleUps B2B 2023"/>
-            <AchievementsButton title="VISA 360PAY Awards 2022" />
-        </div>
+<div class="flex flex-col ">
+    <!-- Efectos de fondo -->
+    <div class="">
+        <div class="overlay-white"></div>
+        <div class="full-width-bg"></div>
     </div>
-    <img class="rounded-2xl" src="/src/assets/first_img.png" alt="">
+
+    <!-- Header -->
+  <div
+    class="flex-wrap z-10 flex flex-row items-center justify-center gap-10 lg:gap-30 px-10 lg:h-screen
+    lg:mt-0 mt-36"
+  >
+
+    <div class="z-10 flex flex-col gap-4">
+      <div
+        style="font-family: 'Mona Sans', sans-serif;"
+        class="flex text-md font-stretch-150%"
+      >
+        Hola 🙋🏼‍♂️ Soy Carlos, tengo 31 años y soy
+      </div>
+      <div
+        style="z-10 font-family: 'Hubot Sans', sans-serif;"
+        class="flex font-extrabold text-2xl md:text-4xl font-stretch-200% md:leading-12"
+      >
+        <p>
+          Manager IT <br />
+          Arquitecto Software <br />
+          Desarrollador
+        </p>
+      </div>
+
+      <div class="z-10 flex flex-row gap-4 pt-2">
+        <AchievementsButton title="ScaleUps B2B 2023" />
+        <AchievementsButton title="VISA 360PAY Awards 2022" />
+      </div>
+    </div>
+    <img class="rounded-2xl z-10" src="/src/assets/first_img.png" alt="" />
+  </div>
+
+
+<!-- TRABAJOS -->
+<div
+  class="
+    flex flex-col md:bottom-3 px-3 pt-12 md:absolute 
+    tall:bottom-3 tall:pt-0 tall:absolute
+    justify-center items-center w-full gap-4"
+>
+  <p class="font-light text-md z-10">HE TRABAJADO EN LAS EMPRESAS</p>
+  <div class="flex flex-row gap-8">
+    <img
+      class="z-10 w-40 grayscale hover:grayscale-0"
+      src="/src/assets/crealsa_logo.svg"
+      alt=""
+    />
+    <img
+      class="z-10 w-40 grayscale hover:grayscale-0 pt-2"
+      src="/src/assets/capgemini_logo.webp"
+      alt=""
+    />
+  </div>
+</div>
 </div>
 
 
 <style>
+  .full-width-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: -250px;
+    background-color: #ffffff;
+    background-image: radial-gradient(
+      rgba(73, 72, 72, 0.171) 1.5px,
+      transparent 0
+    );
+    background-size: 50px 50px;
+    background-repeat: repeat;
+    z-index: 0;
+  }
 
-div {
-    font-family: 'Hubot Sans', sans-serif;
+  .overlay-white {
+    position: absolute;
+    top: -200px;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: radial-gradient(at top, white,transparent, white)
 }
-html {
-  width: 100%;
-  height: 100%;
-  /* Add your background pattern here */
-  background-color: #ffffff;
-  background-image: radial-gradient(rgba(73, 72, 72, 0.171) 1px, transparent 0);
-  background-size: 30px 30px;
-  background-position: -5px -5px
-}
+
+  div {
+    font-family: "Hubot Sans", sans-serif;
+  }
 </style>
