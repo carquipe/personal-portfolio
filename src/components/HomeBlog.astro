@@ -1,0 +1,29 @@
+---
+import BlogItem from "./BlogItem.astro";
+---
+
+<div class="mx-5 sm:mx-10">
+    <div class="flex flex-col lg:flex-row lg:justify-between mb-12">
+      <div class="md:max-w-sm">
+      <h2 class="text-3xl mb-2 font-bold tracking-tight">
+        Conóceme a través de mis artículos
+      </h2>
+      <a href="/blog" class="hover:text-blue-600 cursor-pointer"
+        >Ver todos los artículos »</a
+      >
+    </div>
+      <p class="text-muted dark:text-slate-400 lg:max-w-md lg:text-sm">
+        Escribo sobre tecnología, desarrollo de software, liderazgo y
+        productividad. Mis artículos son una mezcla de reflexiones
+        personales, experiencias profesionales y consejos prácticos. ¡Espero
+        que te gusten!
+      </p>
+  </div>
+
+  <div class="grid lg:grid-cols-4 md:grid-cols-2 -mb-6 gap-6 mx-auto row-gap-6">
+    <BlogItem />
+    <BlogItem />
+    <BlogItem />
+    <BlogItem />
+  </div>
+</div>
