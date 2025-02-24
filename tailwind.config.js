@@ -1,11 +1,12 @@
 // tailwind.config.js
 module.exports = {
-    content: ['./src/**/*.{astro,html,js,jsx,ts,tsx,svelte,vue}'],
+  content: ['./src/**/*.{astro,html,js,jsx,svelte,ts,tsx,vue}'],
     theme: {
-      screens: {
-        tall: { raw: '(min-height:600px)' },
-      },
       extend: {
+        keyframes: {
+
+        },
+
       },
     },
     plugins: [],
