@@ -23,6 +23,7 @@ Este es mi portfolio personalE construido con [Astro](https://astro.build/), dis
 - **Gestión de contenido** Notion, Strapi
 - **Despliegue** Vercel
 - **Componentes UI** shadcn/ui
+- **Animaciones** GSAP
 
 ## 📦 Instalación y Uso
 1. Clonar el repositorio
