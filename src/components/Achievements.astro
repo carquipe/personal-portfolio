@@ -2,7 +2,7 @@
 import MailIcon from "@/assets/MailIcon.astro";
 ---
 
-<section class="flex flex-col items-center justify-center gap-4 h-dvh overflow-hidden">
+<section class="relative flex flex-col items-center justify-center gap-8 h-[175dvh] ">
     <div class="absolute w-full h-full">
         <dir class="white-filter -z-10"></dir>
         <div class="absolute grid-overlay -z-20"></div>
@@ -17,9 +17,32 @@ import MailIcon from "@/assets/MailIcon.astro";
         analizando e implantando planes de acción o proyectos que permitan a 
         las compañía aportar valor a los clientes y alcanzar sus objetivos generales.
     </p>
-    <img class="layout" id="layout1" 
-    src="/src/assets/first_img.png" 
-    style="translate: none; rotate: none; scale: none; transform: translate3d(0px, -39.4627px, 0px);">
+<div>
+    <div class="item item1">
+        <img
+        src="/src/assets/layout2.png" 
+        style="translate: none; rotate: none; scale: none; transform: translate3d(0px, -144.835px, 0px);"></div>
+    </div>
+    <div class="item item2">
+        <img
+        src="/src/assets/layout2.png" 
+        style="translate: none; rotate: none; scale: none; transform: translate3d(0px, -144.835px, 0px);"></div>
+    </div>
+
+    <div class="item item3">
+        <img
+        src="/src/assets/layout2.png" 
+        style="translate: none; rotate: none; scale: none; transform: translate3d(0px, -144.835px, 0px);">
+    </div>
+    <div class="item item4"> 
+        <img
+        src="/src/assets/layout2.png" 
+        style="translate: none; rotate: none; scale: none; transform: translate3d(0px, -144.835px, 0px);">
+    </div>
+</div>
+    
+
+    
 </section>
 
 <style>
@@ -39,18 +62,77 @@ import MailIcon from "@/assets/MailIcon.astro";
         background: radial-gradient(at center, transparent, white 75%, white 75%);
     }
 
-    .layout {
-        outline: 3.5px solid #a5a5a512;
-        outline-offset: 6px;
-        border-radius: 8px;
-        box-shadow: 0px 14px 36px -6px rgba(0, 0, 0, 0.10);
-        min-width: 600px;
-    }
 
-    #layout1 {
-        width: 45%;
-        position: absolute;
-        top: 10%;
-        right: -10%
-    }
+  /* Estilos básicos para los elementos */
+  .item {
+    position:absolute;
+    width: 45%;
+  }
+
+  .item img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Posicionamiento de cada elemento */
+  .item1 { top: 20%; right: -10%; }
+  .item2 { top: 25%;    left: -10%; }
+  .item3 { bottom: 5%; left: -10%; }
+  .item4 { bottom: 0%; right: -10%; }
+
 </style>
+
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Animación para el Elemento 1: se mueve hacia arriba
+  gsap.to(".item1", {
+    y: -200, // mueve 50px hacia arriba
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".item1",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: true,
+    }
+  });
+
+  // Animación para el Elemento 2: se mueve hacia abajo
+  gsap.to(".item2", {
+    y: -200, // mueve 50px hacia abajo
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".item2",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: true,
+    }
+  });
+
+  // Animación para el Elemento 3: se mueve hacia la izquierda
+  gsap.to(".item3", {
+    y: -200, // mueve 50px hacia la izquierda
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".item3",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: true,
+    }
+  });
+
+  // Animación para el Elemento 4: se mueve hacia la derecha
+  gsap.to(".item4", {
+    y: -200, // mueve 50px hacia la derecha
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".item4",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: true,
+    }
+  });
+</script>
