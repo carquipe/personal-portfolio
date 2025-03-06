@@ -1,73 +1,157 @@
 ---
+import JobHistoricItem from "./JobHistoricItem.astro";
+
 
 ---
 
 <section class="flex flex-col bg-gray-300/15 py-20 px-20 gap-10 w-full">
+        
         <div class="flex flex-col gap-3">
-        <h1 class="text-4xl font-bold">
-            El camino que me define
-        </h1>
-        <p class="text-slate-400" >
-            Mi capacidad actual se expresa en la convicción de que cada idea rediseña la experiencia.
-        </p>
-    </div>
-    <div class="flex flex-row gap-8 justify-center items-center">
-        <div class="stats-wrapper">
-          <p class="heading">Proyectos Gestionados</p>
-          <div class="bottom-wrapper">
-            <p class="count">+ 40</p>
-          </div>
+            <h1 class="text-4xl font-bold">
+                El camino que me define
+            </h1>
+            <p class="text-slate-400" >
+                Mi capacidad actual se expresa en la convicción de que cada idea rediseña la experiencia.
+            </p>
         </div>
-        <div class="stats-wrapper">
-          <p class="heading">Proveedores Gestionados</p>
-          <div class="bottom-wrapper">
-            <p class="count">+ 20</p>
-          </div>
+
+        <div class="flex flex-row gap-8 justify-center items-center">
+            <div class="stats-wrapper">
+            <p class="heading">Proyectos Gestionados</p>
+            <div class="bottom-wrapper">
+                <p class="count">+ 40</p>
+            </div>
+            </div>
+            <div class="stats-wrapper">
+            <p class="heading">Proveedores Gestionados</p>
+            <div class="bottom-wrapper">
+                <p class="count">+ 20</p>
+            </div>
+            </div>
+            <div class="stats-wrapper">
+            <p class="heading">Formaciones Impartidas</p>
+            <div class="bottom-wrapper">
+                <p class="count">6</p>
+            </div>
+            </div>
         </div>
-        <div class="stats-wrapper">
-          <p class="heading">Formaciones Impartidas</p>
-          <div class="bottom-wrapper">
-            <p class="count">6</p>
-          </div>
+
+
+    <div class="flex flex-row justify-center">
+    <!-- Timeline -->
+    <div class="ml-5">
+        <!-- Heading -->
+        <div class="ps-2 my-2 first:mt-0">
+        <h3 class="text-xs font-medium uppercase text-gray-500">
+            Actualidad
+        </h3>
         </div>
-    </div>
-      
+        <!-- End Heading -->
+    
+        <JobHistoricItem
+            title="Tech Lead"
+            description = "Responsable del equipo técnico, liderando la evolución de la arquitectura de software, la implementación de nuevas tecnologías y la gestión de proyectos de desarrollo."
+            company="Crealsa"
+        />
 
     
+        <!-- Heading -->
+        <div class="ps-2 my-2 first:mt-0">
+        <h3 class="text-xs font-medium uppercase text-gray-500">
+                2024
+        </h3>
+        </div>
+        <!-- End Heading -->
+    
+        <JobHistoricItem
+            title="CTO"
+            description = " Dueño de las áreas de Desarrollo, Soporte Técnico y Sistemas, liderando la estrategia para conseguir los objetivos corporativos. Gestión del presupuesto de IT y liderazgo de personas." 
+            company="Crealsa" />
 
+        <!-- Heading -->
+        <div class="ps-2 my-2 first:mt-0">
+            <h3 class="text-xs font-medium uppercase text-gray-500">
+                2023
+            </h3>
+            </div>
+        <!-- End Heading -->
+
+        <JobHistoricItem 
+            title="Manager IT"
+            description = " Coordinación de los equipos IT de hasta 20 personas. Migración de la infraestructura a entorno cloud (Azure), desarrollo de nueva rama de negocio: servicios bancarios; creación de APIs en Spring Boot, implementación de sistema de trabajo ágil, evolución del sistema core basado en .Net."
+            company="Crealsa" />
+
+        <!-- Heading -->
+        <div class="ps-2 my-2 first:mt-0">
+            <h3 class="text-xs font-medium uppercase text-gray-500">
+                2018
+            </h3>
+            </div>
+        <!-- End Heading -->
+
+        <JobHistoricItem 
+            title="Ingeniero de Software"
+            description = " Desarrollo de aplicaciones front-end en Javascript, back-end en .Net & Java y desarrollo de bases de datos en SQL Server. Comienzo en el diseño de arquitectura de software."
+            company="Crealsa" />
+
+        <!-- Heading -->
+        <div class="ps-2 my-2 first:mt-0">
+            <h3 class="text-xs font-medium uppercase text-gray-500">
+                2017
+            </h3>
+            </div>
+        <!-- End Heading -->
+
+        <JobHistoricItem title="Consultor SAP" 
+            description = "Desarrollado evolutivos y correctivos de los sistemas SAP para cuentas como: Navantia, Gullon, Linea Directa, Repsol entre otros." 
+            company="Capgemini"
+            />
+    </div>
+    <!-- End Timeline -->
+
+    <div>
+        <img 
+            src="/src/assets/me_background_removed.png"
+            alt=""
+            class="max-w-md" />
+    </div>
+
+</div>
 </section>
+
+    
 
 
 <style>
     .stats-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    width:100%;
-    height: auto;
-    border-radius: 20px;
-    background-color: rgb(255, 255, 255);
-    padding: 15px;
-    box-shadow:
-        20px 20px 60px #e6e6e6,
-        -20px -20px 60px #f3f3f3;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        width:100%;
+        height: auto;
+        border-radius: 20px;
+        background-color: rgb(255, 255, 255);
+        padding: 15px;
+        box-shadow:
+            20px 20px 60px #e6e6e6,
+            -20px -20px 60px #f3f3f3;
     }
     .heading {
-    font-size: 0.8em;
-    font-weight: 700;
-    letter-spacing: 1px;
+        font-size: 0.8em;
+        font-weight: 700;
+        letter-spacing: 1px;
     }
     .bottom-wrapper {
-    width: 100%;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
     }
 
     .bottom-wrapper p {
-    font-size: 1.8em;
-    font-weight: 700;
+        font-size: 1.8em;
+        font-weight: 700;
     }
 
 
