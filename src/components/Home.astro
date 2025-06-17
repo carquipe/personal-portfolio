@@ -1,19 +1,23 @@
 ---
-import Achievements from './Achievements.astro';
-import Education from './Education.astro';
 import First from './First.astro';
+import Achievements from './Achievements.astro';
 import HistoricStats from './HistoricStats.astro';
-import HomeBlog from './HomeBlog.astro';
+import Education from './Education.astro';
 import Skillset from './Skillset.astro';
+import HomeBlog from './HomeBlog.astro';
 ---
 
 
 	<main class="">
 		<First />
-		<Achievements />
+		<div id="achievements">
+			<Achievements />
+		</div>
 		<HistoricStats />
 		<Education />
-		<Skillset />
+		<div id="skillset">
+			<Skillset />
+		</div>
 		<HomeBlog />
 	</main>
 

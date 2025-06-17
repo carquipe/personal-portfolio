@@ -1,0 +1,156 @@
+---
+interface Props {
+  content: string;
+}
+
+const { content } = Astro.props;
+---
+
+<div class="notion-content prose prose-lg max-w-none">
+  <Fragment set:html={content} />
+</div>
+
+<style>
+  .notion-content {
+    color: #4b5563; /* gray-600 */
+    line-height: 1.75;
+  }
+
+  .notion-content h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #111827; /* gray-900 */
+    margin: 2rem 0 1rem;
+  }
+
+  .notion-content h2 {
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: #111827; /* gray-900 */
+    margin: 1.75rem 0 0.75rem;
+  }
+
+  .notion-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827; /* gray-900 */
+    margin: 1.5rem 0 0.75rem;
+  }
+
+  .notion-content p {
+    margin: 1.25rem 0;
+  }
+
+  .notion-content ul, .notion-content ol {
+    margin: 1.25rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .notion-content ul {
+    list-style-type: disc;
+  }
+
+  .notion-content ol {
+    list-style-type: decimal;
+  }
+
+  .notion-content li {
+    margin: 0.5rem 0;
+  }
+
+  .notion-content a {
+    color: #4f46e5; /* indigo-600 */
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .notion-content a:hover {
+    color: #4338ca; /* indigo-700 */
+  }
+
+  .notion-content blockquote {
+    border-left: 4px solid #d1d5db; /* gray-300 */
+    padding-left: 1rem;
+    margin: 1.25rem 0;
+    color: #6b7280; /* gray-500 */
+    font-style: italic;
+  }
+
+  .notion-content pre {
+    background-color: #1f2937; /* gray-800 */
+    color: #f3f4f6; /* gray-100 */
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1.25rem 0;
+  }
+
+  .notion-content code {
+    background-color: #f3f4f6; /* gray-100 */
+    color: #111827; /* gray-900 */
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+
+  .notion-content pre code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .notion-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .notion-content hr {
+    border: 0;
+    border-top: 1px solid #e5e7eb; /* gray-200 */
+    margin: 2rem 0;
+  }
+
+  .notion-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+  }
+
+  .notion-content th, .notion-content td {
+    border: 1px solid #e5e7eb; /* gray-200 */
+    padding: 0.75rem;
+    text-align: left;
+  }
+
+  .notion-content th {
+    background-color: #f9fafb; /* gray-50 */
+    font-weight: 600;
+  }
+
+  /* Estilos para callouts */
+  .notion-content .callout {
+    background-color: #eff6ff;
+    border-left: 4px solid #3b82f6;
+    padding: 1rem;
+    margin: 1.25rem 0;
+    border-radius: 0.25rem;
+  }
+
+  /* Estilos para listas anidadas */
+  .notion-content ul ul, .notion-content ol ol {
+    margin: 0.5rem 0;
+  }
+
+  /* Estilos para enlaces dentro de bloques de código */
+  .notion-content pre a {
+    color: #93c5fd;
+    text-decoration: none;
+  }
+
+  .notion-content pre a:hover {
+    text-decoration: underline;
+  }
+</style> 

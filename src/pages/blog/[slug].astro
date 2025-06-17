@@ -1,0 +1,90 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getBlogPostBySlug, getBlogPosts } from '../../lib/notion';
+import type { BlogPost } from '../../lib/notion';
+import NotionContent from '../../components/NotionContent.astro';
+
+export async function getStaticPaths() {
+  const posts = await getBlogPosts();
+  return posts.map((post: BlogPost) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+
+// Si no hay post, redirigir a 404
+if (!post) {
+  return Astro.redirect('/404');
+}
+
+// Asegurarnos de que tenemos todos los datos necesarios
+const { title, date, tags, coverImage, content, description } = post;
+---
+
+<Layout title={post.title}>
+  <div class="min-h-screen bg-[#f9fafb] pt-24">
+    {/* Hero section */}
+    <div class="relative h-[50vh] min-h-[400px] w-full">
+      {post.coverImage && (
+        <div
+          class="absolute inset-0 bg-cover bg-center"
+          style={`background-image: url(${post.coverImage});`}
+        />
+      )}
+      <div class="absolute inset-0 bg-black bg-opacity-50" />
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="text-center text-white px-4">
+          <h1 class="text-4xl md:text-5xl font-bold mb-4">{post.title}</h1>
+          <p class="text-lg md:text-xl opacity-90">
+            {new Date(post.date).toLocaleDateString('es-ES', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* Content Section */}
+    <div class="container mx-auto px-4 py-12">
+      <div class="max-w-4xl mx-auto">
+        {/* Tags */}
+        {tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mb-8">
+            {tags.map((tag: string) => (
+              <span class="px-3 py-1 text-sm font-medium text-[#4f46e5] bg-[#eef2ff] rounded-full">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Description */}
+        {description && (
+          <div class="text-xl text-[#4b5563] mb-8 italic">
+            {description}
+          </div>
+        )}
+
+        {/* Main Content */}
+        <NotionContent content={content} />
+
+        {/* Back to Blog Link */}
+        <div class="mt-12 text-center">
+          <a
+            href="/blog"
+            class="inline-flex items-center px-6 py-3 bg-[#4f46e5] text-white font-medium rounded-lg hover:bg-[#4338ca] transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Volver al blog
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

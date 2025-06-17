@@ -1,10 +1,10 @@
 ---
-import BlogItem from "./BlogItem.astro";
+import BlogItem from './BlogItem.astro';
 ---
 
 <div class="mx-5 sm:mx-10 mt-20">
-    <div class="flex flex-col lg:flex-row lg:justify-between mb-12">
-      <div class="md:max-w-sm">
+  <div class="flex flex-col lg:flex-row lg:justify-between mb-12">
+    <div class="md:max-w-sm">
       <h2 class="text-3xl mb-2 font-bold tracking-tight">
         Conóceme a través de mis artículos
       </h2>
@@ -12,18 +12,87 @@ import BlogItem from "./BlogItem.astro";
         >Ver todos los artículos »</a
       >
     </div>
-      <p class="text-muted text-slate-400 lg:max-w-md lg:text-sm">
-        Escribo sobre tecnología, desarrollo de software, liderazgo y
-        productividad. Mis artículos son una mezcla de reflexiones
-        personales, experiencias profesionales y consejos prácticos. ¡Espero
-        que te gusten!
-      </p>
+    <p class="text-muted text-slate-400 lg:max-w-md lg:text-sm">
+      Escribo sobre tecnología, desarrollo de software, liderazgo y
+      productividad. Mis artículos son una mezcla de reflexiones
+      personales, experiencias profesionales y consejos prácticos. ¡Espero
+      que te gusten!
+    </p>
   </div>
 
-  <div class="grid lg:grid-cols-4 md:grid-cols-2 -mb-6 gap-6 mx-auto row-gap-6">
-    <BlogItem />
-    <BlogItem />
-    <BlogItem />
-    <BlogItem />
+  <div id="blog-posts" class="grid lg:grid-cols-4 md:grid-cols-2 -mb-6 gap-6 mx-auto row-gap-6">
+    <div class="col-span-full text-center py-8">
+      <div class="animate-pulse">
+        <div class="h-4 bg-gray-200 rounded w-3/4 mx-auto mb-4"></div>
+        <div class="h-4 bg-gray-200 rounded w-1/2 mx-auto"></div>
+      </div>
+    </div>
   </div>
 </div>
+
+<script>
+  async function loadBlogPosts() {
+    try {
+      const response = await fetch('/api/blog/posts');
+      const posts = await response.json();
+      const recentPosts = posts.slice(0, 4);
+      
+      const container = document.getElementById('blog-posts');
+      if (!container) return;
+
+      if (recentPosts.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full text-center py-8 text-gray-500">
+            No hay artículos disponibles en este momento.
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = recentPosts.map(post => `
+        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+          <a href="/blog/${post.slug}" class="block">
+            <img
+              src="${post.coverImage}"
+              alt="${post.title}"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                ${post.tags.map(tag => `
+                  <span class="px-2 py-1 text-xs font-medium text-indigo-600 bg-indigo-100 rounded-full">
+                    ${tag}
+                  </span>
+                `).join('')}
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">${post.title}</h3>
+              <p class="text-gray-600 mb-4">${post.description}</p>
+              <div class="flex items-center text-sm text-gray-500">
+                <time datetime="${post.date}">
+                  ${new Date(post.date).toLocaleDateString('es-ES', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </time>
+              </div>
+            </div>
+          </a>
+        </article>
+      `).join('');
+    } catch (error) {
+      console.error('Error loading blog posts:', error);
+      const container = document.getElementById('blog-posts');
+      if (container) {
+        container.innerHTML = `
+          <div class="col-span-full text-center py-8 text-red-500">
+            Error al cargar los artículos. Por favor, intenta de nuevo más tarde.
+          </div>
+        `;
+      }
+    }
+  }
+
+  // Cargar los posts cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', loadBlogPosts);
+</script>
