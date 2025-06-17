@@ -1,80 +1,20 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getBlogPosts } from '../../lib/notion';
-import type { BlogPost } from '../../lib/notion';
-import BlogItem from '../../components/BlogItem.astro';
+import BlogGrid from '../../components/BlogGrid';
 
-// Obtener todos los posts
+// Obtener posts y categorías
 const posts = await getBlogPosts();
-
-// Obtener todas las categorías únicas
-const allCategories = Array.from(new Set(posts.flatMap(post => post.tags))).sort();
-
-// Obtener la categoría seleccionada de la URL
 const selectedCategory = Astro.url.searchParams.get('category') || '';
-
-// Filtrar posts por categoría si hay una seleccionada
-const filteredPosts = selectedCategory
-  ? posts.filter(post => post.tags.includes(selectedCategory))
-  : posts;
 ---
 
 <Layout title="Blog | Carlos Quinzá">
   <div class="min-h-screen bg-[#f9fafb] pt-24">
     <div class="container mx-auto px-4">
-      {/* Header */}
-      <div class="text-center mb-12">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">Blog</h1>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-          Escribo sobre tecnología, desarrollo de software, liderazgo y productividad. Mis artículos son una mezcla de reflexiones personales, experiencias profesionales y consejos prácticos. ¡Espero que te gusten!
-        </p>
-      </div>
 
-      {/* Filtros de categorías */}
-      <div class="mb-8">
-        <div class="flex flex-wrap justify-center gap-2">
-          <a
-            href="/blog"
-            class={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-              !selectedCategory
-                ? 'bg-[#4f46e5] text-white'
-                : 'bg-white text-gray-600 hover:bg-gray-100'
-            }`}
-          >
-            Todos
-          </a>
-          {allCategories.map((category) => (
-            <a
-              href={`/blog?category=${encodeURIComponent(category)}`}
-              class={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                selectedCategory === category
-                  ? 'bg-[#4f46e5] text-white'
-                  : 'bg-white text-gray-600 hover:bg-gray-100'
-              }`}
-            >
-              {category}
-            </a>
-          ))}
-        </div>
-      </div>
 
-      {/* Grid de posts */}
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredPosts.map((post) => (
-          <BlogItem post={post} />
-        ))}
-      </div>
-
-      {/* Mensaje si no hay posts */}
-      {filteredPosts.length === 0 && (
-        <div class="text-center py-12">
-          <p class="text-gray-600 text-lg">
-            {selectedCategory
-              ? `No hay artículos en la categoría "${selectedCategory}".`
-              : 'No hay artículos disponibles.'}
-          </p>
-        </div>
-      )}
+      {/* Blog Grid Component */}
+      <BlogGrid client:visible initialPosts={posts} initialCategory={selectedCategory} />
     </div>
   </div>
 </Layout>
