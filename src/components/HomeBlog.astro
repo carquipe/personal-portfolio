@@ -33,7 +33,7 @@ import BlogItem from './BlogItem.astro';
 <script>
   async function loadBlogPosts() {
     try {
-      const response = await fetch('/api/blog/posts');
+      const response = await fetch('/api/blog-posts');
       const posts = await response.json();
       const recentPosts = posts.slice(0, 4);
       

@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getBlogPosts } from '../../../lib/notion';
+import { getBlogPosts } from '../../lib/notion';
 
 export const GET: APIRoute = async () => {
   try {
