@@ -8,7 +8,7 @@
       "@/fonts/*": ["src/assets/fonts/*"],
       "@/styles/*": ["src/styles/*"],
       "@/assets/*": ["src/assets/*"],
-      "@/components/*": ["src/components/*"],
+      "@/components/*": ["src/components/*"]
     }
   }
 }

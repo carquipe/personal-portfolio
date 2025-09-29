@@ -1,5 +1,5 @@
-import type { APIRoute } from 'astro';
-import { getBlogPosts } from '../../lib/notion';
+import type { APIRoute } from "astro";
+import { getBlogPosts } from "../../lib/notion";
 
 export const GET: APIRoute = async () => {
   try {
@@ -7,16 +7,19 @@ export const GET: APIRoute = async () => {
     return new Response(JSON.stringify(posts), {
       status: 200,
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
   } catch (error) {
-    console.error('Error in blog posts API:', error);
-    return new Response(JSON.stringify({ error: 'Error fetching blog posts' }), {
-      status: 500,
-      headers: {
-        'Content-Type': 'application/json',
+    console.error("Error in blog posts API:", error);
+    return new Response(
+      JSON.stringify({ error: "Error fetching blog posts" }),
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
       },
-    });
+    );
   }
-}; 
+};

@@ -2,32 +2,33 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'Mona Sans';
-    src:
-      url('/src/assets/fonts/Mona-Sans.woff2') format('woff2 supports variations'),
-      url('/src/assets/fonts/Mona-Sans.woff2') format('woff2-variations');
-    font-weight: 200 900;
-    font-stretch: 75% 125%;
-    font-display: swap; /* This is to load one local font meawhile this font is loading */
-  }
+  font-family: "Mona Sans";
+  src:
+    url("/src/assets/fonts/Mona-Sans.woff2") format("woff2 supports variations"),
+    url("/src/assets/fonts/Mona-Sans.woff2") format("woff2-variations");
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+  font-display: swap; /* This is to load one local font meawhile this font is loading */
+}
 
-  @font-face {
-    font-family: 'Hubot Sans';
-    src:
-      url('/src/assets/fonts/Hubot-Sans.woff2') format('woff2 supports variations'),
-      url('/src/assets/fonts/Hubot-Sans.woff2') format('woff2-variations');
-    font-weight: 200 900;
-    font-stretch: 75% 125%;
-    font-style: swap;
-  }
+@font-face {
+  font-family: "Hubot Sans";
+  src:
+    url("/src/assets/fonts/Hubot-Sans.woff2")
+      format("woff2 supports variations"),
+    url("/src/assets/fonts/Hubot-Sans.woff2") format("woff2-variations");
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+  font-style: swap;
+}
 
-  [data-aw-toggle-menu] path {
-    @apply transition;
-  }
-  [data-aw-toggle-menu].expanded g > path:first-child {
-    @apply -rotate-45 translate-y-[15px] translate-x-[-3px];
-  }
-  
-  [data-aw-toggle-menu].expanded g > path:last-child {
-    @apply rotate-45 translate-y-[-8px] translate-x-[14px];
-  }
+[data-aw-toggle-menu] path {
+  @apply transition;
+}
+[data-aw-toggle-menu].expanded g > path:first-child {
+  @apply -rotate-45 translate-y-[15px] translate-x-[-3px];
+}
+
+[data-aw-toggle-menu].expanded g > path:last-child {
+  @apply rotate-45 translate-y-[-8px] translate-x-[14px];
+}
