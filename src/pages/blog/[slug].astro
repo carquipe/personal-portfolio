@@ -26,16 +26,20 @@ const { title, date, tags, coverImage, content, description } = post;
 <Layout title={post.title}>
   <div class="min-h-screen bg-[#f9fafb] pt-24">
     {/* Hero section */}
-    <div class="relative h-[50vh] min-h-[400px] w-full">
+    <div class="relative h-[50vh] min-h-[400px] w-full overflow-hidden">
       {post.coverImage && (
-        <div
-          class="absolute inset-0 bg-cover bg-center"
-          style={`background-image: url(${post.coverImage});`}
+        <img
+          src={post.coverImage}
+          alt={`Imagen de portada para ${post.title}`}
+          class="absolute inset-0 h-full w-full object-cover"
+          loading="eager"
+          decoding="async"
         />
       )}
-      <div class="absolute inset-0 bg-black bg-opacity-50" />
-      <div class="absolute inset-0 flex items-center justify-center">
-        <div class="text-center text-white px-4">
+      <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80" />
+      <div class="absolute inset-0 bg-black/30 backdrop-blur-sm" />
+      <div class="relative z-10 flex h-full items-center justify-center px-4">
+        <div class="text-center text-white">
           <h1 class="text-4xl md:text-5xl font-bold mb-4">{post.title}</h1>
           <p class="text-lg md:text-xl opacity-90">
             {new Date(post.date).toLocaleDateString('es-ES', {
