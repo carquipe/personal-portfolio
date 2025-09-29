@@ -1,5 +1,6 @@
 ---
 import JobHistoricItem from "./JobHistoricItem.astro";
+import personalPhoto from "/src/assets/me_background_removed.png";
 
 
 ---
@@ -111,7 +112,7 @@ import JobHistoricItem from "./JobHistoricItem.astro";
 
     <div>
         <img 
-            src="/src/assets/me_background_removed.png"
+            src={personalPhoto.src}
             alt=""
             class="max-w-md hidden md:block" />
     </div>

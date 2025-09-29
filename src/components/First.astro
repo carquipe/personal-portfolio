@@ -1,6 +1,8 @@
 ---
 import AchievementsButton from "./AchievementsButton.astro";
 import headerPhoto from "/src/assets/first_img.png";
+import crealsaLogo from "/src/assets/crealsa_logo.svg";
+import capgeminiLogo from "/src/assets/capgemini_logo.webp";
 ---
 <!-- TODO: Solve responsive on MD -->
 <div class="flex flex-col">
@@ -54,12 +56,12 @@ import headerPhoto from "/src/assets/first_img.png";
   <div class="flex flex-row gap-8">
     <img
       class="z-10 w-40 grayscale hover:grayscale-0"
-      src="/src/assets/crealsa_logo.svg"
+      src={crealsaLogo.src}
       alt=""
     />
     <img
       class="z-10 w-40 grayscale hover:grayscale-0 pt-2"
-      src="/src/assets/capgemini_logo.webp"
+      src={capgeminiLogo.src}
       alt=""
     />
   </div>
