@@ -1,7 +1,7 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import { getBlogPosts } from '../../lib/notion';
-import BlogGrid from '../../components/BlogGrid';
+import Layout from '@app/layout/Layout.astro';
+import { getBlogPosts } from '@app/providers/NotionProvider';
+import BlogGrid from '@features/blog/utils/BlogGrid';
 
 // Obtener posts y categorías
 const posts = await getBlogPosts();

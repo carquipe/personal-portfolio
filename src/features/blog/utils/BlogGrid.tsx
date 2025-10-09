@@ -1,5 +1,6 @@
+import type { BlogPost } from '@app/providers/NotionProvider';
 import { useEffect, useMemo, useState } from 'react';
-import type { BlogPost } from '../lib/notion';
+
 
 interface Props {
   initialPosts: BlogPost[];

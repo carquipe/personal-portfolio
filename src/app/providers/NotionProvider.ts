@@ -12,7 +12,52 @@ const notion = new Client({
 });
 
 const DATABASE_ID = import.meta.env.NOTION_DATABASE_ID;
-const renderer = new NotionRenderer({ client: notion });
+const renderer = new NotionRenderer({
+  client: notion,
+  customBlocks: {
+    external: async (block) => {
+      if (!("external" in block)) return "";
+      
+      if (block.type === "embed") {
+        return `<div class="notion-embed">
+          <iframe src="${block.embed.url}" frameborder="0" 
+            sandbox="allow-scripts allow-popups allow-forms allow-same-origin" 
+            allowfullscreen 
+            loading="lazy"
+            class="w-full min-h-[500px]"></iframe>
+        </div>`;
+      }
+      
+      if (block.type === "video") {
+        return `<div class="notion-video">
+          <video src="${block.video.external.url}" controls class="w-full"></video>
+        </div>`;
+      }
+
+      if (block.type === "file") {
+        const url = block.file.external.url;
+        const filename = url.split('/').pop() || 'file';
+        return `<div class="notion-file">
+          <a href="${url}" target="_blank" rel="noopener noreferrer" 
+            class="flex items-center gap-2 p-4 border rounded hover:bg-gray-50">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span>${filename}</span>
+          </a>
+        </div>`;
+      }
+
+      // Fallback para otros tipos de contenido externo
+      return `<div class="notion-external-block">
+        <a href="${block.external?.url}" target="_blank" rel="noopener noreferrer">
+          ${block.external?.url}
+        </a>
+      </div>`;
+    }
+  }
+});
 const DEFAULT_COVER_IMAGE = "/src/assets/first_img.png";
 
 export interface BlogPost {

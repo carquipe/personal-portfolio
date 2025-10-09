@@ -1,14 +1,23 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
+  "include": [".astro/types.d.ts", "**/*", "src"],
   "exclude": ["dist"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/fonts/*": ["src/assets/fonts/*"],
-      "@/styles/*": ["src/styles/*"],
-      "@/assets/*": ["src/assets/*"],
-      "@/components/*": ["src/components/*"]
-    }
+      "@app/*": ["src/app/*"],               // Layouts, estilos globales, providers
+      "@assets/*": ["src/assets/*"],         // Imágenes, íconos, fuentes procesadas
+      "@core/*": ["src/core/*"],             // Utils globales, constantes, hooks base
+      "@features/*": ["src/features/*"],     // Funcionalidades independientes (blog, etc.)
+      "@shared/*": ["src/shared/*"],         // Componentes o tipos compartidos
+      "@styles/*": ["src/app/styles/*"],     // Estilos globales y tokens
+      "@images/*": ["src/assets/images/*"],  // Acceso directo semántico a imágenes
+      "@icons/*": ["src/assets/icons/*"],    // Acceso directo a iconos SVG
+      "@fonts/*": ["src/assets/fonts/*"]     // Fuentes locales
+    },
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "moduleResolution": "bundler"
   }
 }

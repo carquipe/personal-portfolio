@@ -1,6 +1,7 @@
 ---
+import { getBlogPosts } from '@app/providers/NotionProvider';
 import BlogItem from './BlogItem.astro';
-import { getBlogPosts } from '../lib/notion';
+
 
 const posts = await getBlogPosts();
 const recentPosts = posts.slice(0, 4);

@@ -1,23 +1,18 @@
+import { getBlogPosts } from "@app/providers/NotionProvider";
 import type { APIRoute } from "astro";
-import { getBlogPosts } from "../../../lib/notion";
 
-export const GET: APIRoute = async ({ url }) => {
+
+export const GET: APIRoute = async () => {
   try {
-    const category = url.searchParams.get("category");
     const posts = await getBlogPosts();
-
-    const filteredPosts = category
-      ? posts.filter((post) => post.tags.includes(category))
-      : posts;
-
-    return new Response(JSON.stringify(filteredPosts), {
+    return new Response(JSON.stringify(posts), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
       },
     });
   } catch (error) {
-    console.error("Error fetching blog posts:", error);
+    console.error("Error in blog posts API:", error);
     return new Response(
       JSON.stringify({ error: "Error fetching blog posts" }),
       {

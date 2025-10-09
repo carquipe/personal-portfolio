@@ -1,5 +1,6 @@
-import type { BlogPost } from '../../lib/notion';
-import BlogItem from './BlogItem.astro';
+
+import BlogItem from "@features/blog/components/BlogItem.astro";
+
 
 const { posts, category } = Astro.props;
 const filteredPosts = category

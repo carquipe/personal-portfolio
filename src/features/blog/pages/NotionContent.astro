@@ -6,10 +6,22 @@ interface Props {
 }
 
 const { content } = Astro.props;
+
+// Procesar el contenido para asegurar que los saltos de línea se manejen correctamente
+const processedContent = content.replace(
+  /(<div class="callout[^>]*>)([\s\S]*?)(<\/div>)/g,
+  (match, openTag, content, closeTag) => {
+    // Reemplazar \n con <br> dentro de los callouts
+    const processedCalloutContent = content
+      .replace(/\n/g, '<br>')
+      .replace(/<p>([\s\S]*?)<\/p>/g, (_, p) => `<p>${p.replace(/<br>/g, '\n')}</p>`);
+    return openTag + processedCalloutContent + closeTag;
+  }
+);
 ---
 
 <div class="notion-content prose prose-lg max-w-none">
-  <Fragment set:html={content} />
+  <Fragment set:html={processedContent} />
 </div>
 
 <style is:global>
@@ -134,11 +146,44 @@ const { content } = Astro.props;
 
   /* Estilos para callouts */
   .notion-content .callout {
+    display: block;
     background-color: #eff6ff;
-    border-left: 4px solid #3b82f6;
-    padding: 1rem;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
     margin: 1.25rem 0;
-    border-radius: 0.25rem;
+    line-height: 1.6;
+  }
+
+  .notion-content .callout p {
+    margin: 0 0 1rem 0;
+    white-space: pre-line;
+  }
+
+  .notion-content .callout p:last-child {
+    margin-bottom: 0;
+  }
+
+  .notion-content .callout br {
+    display: block;
+    content: "";
+    margin: 0.5rem 0;
+  }
+
+  /* Estilo específico para el contenedor del icono del callout */
+  .notion-content .callout div[style*="display: flex"] {
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Ajuste para el emoji del callout */
+  .notion-content .callout div[style*="display: flex"] span {
+    flex-shrink: 0;
+    font-size: 1.25rem;
+  }
+
+  /* Asegurarse de que el contenido del callout tenga el espaciado correcto */
+  .notion-content .callout > div:not([style*="display: flex"]) {
+    white-space: pre-line;
   }
 
   /* Estilos para listas anidadas */
@@ -154,5 +199,50 @@ const { content } = Astro.props;
 
   .notion-content pre a:hover {
     text-decoration: underline;
+  }
+
+  .notion-external-block {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+  }
+
+  .notion-external-block a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #4f46e5;
+    text-decoration: none;
+  }
+
+  .notion-external-block a:hover {
+    text-decoration: underline;
+  }
+
+  .notion-embed {
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .notion-embed iframe {
+    width: 100%;
+    min-height: 500px;
+    border: none;
+  }
+
+  .notion-video {
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .notion-video video {
+    width: 100%;
+  }
+
+  .notion-file {
+    margin: 1rem 0;
   }
 </style>
