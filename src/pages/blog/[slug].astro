@@ -1,9 +1,7 @@
 ---
 import Layout from '@app/layout/Layout.astro';
 import NotionContent from '@features/blog/pages/NotionContent.astro';
-
-import type { BlogPost } from '../../lib/notion';
-import { getBlogPosts } from '@app/providers/NotionProvider';
+import { getBlogPosts, type BlogPost } from '@app/providers/NotionProvider';
 
 
 export async function getStaticPaths() {
