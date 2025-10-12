@@ -12,9 +12,6 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 export async function markdownToHtml(
   markdownInput: string
 ): Promise<string> {
-  
-  console.log(markdownInput);
-
   const result = await remark()
     .use(remarkGfm)
     .use(html, { sanitize: false })

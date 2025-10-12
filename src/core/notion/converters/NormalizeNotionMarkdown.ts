@@ -144,12 +144,7 @@ function normalizeTableBlock(block: string): string {
       .replace(/^\|/, "")
       .replace(/\|$/, "")
       .split("|")
-      .map((c) =>
-        c
-          .replace(/\s+/g, " ")
-          .replace(/(<br\s*\/?>\s*){2,}/gi, "<br>")
-          .trim()
-      );
+      .map((cell) => normalizeTableCell(cell));
     return `| ${cells.join(" | ")} |`;
   });
 
@@ -176,6 +171,35 @@ function appendContinuationToRow(prevRow: string, continuation: string): string 
   );
 
   return `| ${parts.join(" | ")} |`;
+}
+
+/**
+ * Normaliza el contenido de una celda de tabla, asegurando que los saltos de
+ * línea internos (ya sean `\n` o `<br>`) se conviertan en `<br>` reales y que
+ * no se pierda formato al compactar espacios.
+ */
+function normalizeTableCell(cell: string): string {
+  const normalizedLines = cell
+    .replace(/\r\n?/g, "\n")
+    .replace(/<br\s*\/?>/gi, "\n")
+    .split("\n")
+    .map((segment) => segment.replace(/\s+/g, " ").trim());
+
+  const trimmedLines = trimEmptyEdges(normalizedLines);
+
+  if (trimmedLines.length === 0) return "";
+
+  return trimmedLines.join("<br>").replace(/(<br>\s*){2,}/gi, "<br>");
+}
+
+function trimEmptyEdges(lines: string[]): string[] {
+  let start = 0;
+  let end = lines.length;
+
+  while (start < end && lines[start] === "") start++;
+  while (end > start && lines[end - 1] === "") end--;
+
+  return lines.slice(start, end);
 }
 
 /**
