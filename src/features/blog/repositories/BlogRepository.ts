@@ -29,11 +29,8 @@ export class BlogRepository {
       response.results.map(async (page: any) => {
         const markdown = await pageToMarkdown(page.id);
 
-        const cleanedMd =  normalizeNotionMarkdown( [markdown.parent, ...(markdown.children || [])]
-        .join("\n\n")
-        );
+        const cleanedMd = normalizeNotionMarkdown(markdown);
 
-        console.log(cleanedMd);
         const contentString = await markdownToHtml(cleanedMd);
         return mapPageToBlogPost(page, contentString);
       })
