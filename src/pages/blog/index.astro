@@ -1,10 +1,9 @@
 ---
 import Layout from '@app/layout/Layout.astro';
-import { getBlogPosts } from '@app/providers/NotionProvider';
+import { getAllPosts } from "@content/blog";
 import BlogGrid from '@features/blog/utils/BlogGrid';
 
-// Obtener posts y categorías
-const posts = await getBlogPosts();
+const posts = await getAllPosts();
 const selectedCategory = Astro.url.searchParams.get('category') || '';
 ---
 

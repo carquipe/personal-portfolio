@@ -1,5 +1,6 @@
 ---
 import "@notion-render/client/dist/theme.css";
+import { markdownToHtml } from "@notion/converters/NotionMarkdownHtml";
 
 interface Props {
   content: string;
@@ -7,17 +8,8 @@ interface Props {
 
 const { content } = Astro.props;
 
-// Procesar el contenido para asegurar que los saltos de línea se manejen correctamente
-const processedContent = content.replace(
-  /(<div class="callout[^>]*>)([\s\S]*?)(<\/div>)/g,
-  (match, openTag, content, closeTag) => {
-    // Reemplazar \n con <br> dentro de los callouts
-    const processedCalloutContent = content
-      .replace(/\n/g, '<br>')
-      .replace(/<p>([\s\S]*?)<\/p>/g, (_, p) => `<p>${p.replace(/<br>/g, '\n')}</p>`);
-    return openTag + processedCalloutContent + closeTag;
-  }
-);
+const processedContent = await markdownToHtml(content);
+
 ---
 
 <div class="notion-content prose prose-lg max-w-none">

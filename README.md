@@ -10,7 +10,6 @@ Este es mi portfolio personalE construido con [Astro](https://astro.build/), dis
 
 - 📝 Gestión de contenido de Blog con Notion
 - 🌓 Modo oscuro / claro
-- 📂 Gestión de contenido con Strapi
 - 🎨 Diseño responsive
 
 ### Fuentes
@@ -20,13 +19,13 @@ Este es mi portfolio personalE construido con [Astro](https://astro.build/), dis
 
 ### Patrones usados
 
-- Definición de alias para paths en `tsconfig.json`
+- Definición de alias para paths en `astro.config.mjs`
 
 ## ⚒️ Tecnologías
 
 - **Framework** Astro 5
 - **Estilos** TailwindCSS
-- **Gestión de contenido** Notion, Strapi
+- **Gestión de contenido** Notion
 - **Despliegue** Vercel
 - **Componentes UI** shadcn/ui
 - **Animaciones** GSAP

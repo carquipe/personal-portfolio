@@ -1,8 +1,10 @@
 ---
-import type { BlogPost } from '@app/providers/NotionProvider';
+import type { NotionBlogPost } from '../models/NotionBlogPost';
+
+
 
 interface Props {
-  post: BlogPost;
+  post: NotionBlogPost;
 }
 
 const { post } = Astro.props;

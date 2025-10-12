@@ -1,18 +1,23 @@
 ---
 import Layout from '@app/layout/Layout.astro';
 import NotionContent from '@features/blog/pages/NotionContent.astro';
-import { getBlogPosts, type BlogPost } from '@app/providers/NotionProvider';
+import { getAllPosts } from "@content/blog";
+import type { NotionBlogPost } from '@features/blog/models/NotionBlogPost';
 
 
 export async function getStaticPaths() {
-  const posts = await getBlogPosts();
-  return posts.map((post: BlogPost) => ({
+  const posts = await getAllPosts();
+  return posts.map((post: NotionBlogPost) => ({
     params: { slug: post.slug },
     props: { post },
   }));
 }
 
 const { post } = Astro.props;
+
+console.log("🔍 Post data:", post);
+console.log("📝 Post content length:", post.content?.length);
+
 
 // Si no hay post, redirigir a 404
 if (!post) {
@@ -74,7 +79,7 @@ const { title, date, tags, coverImage, content, description } = post;
         )}
 
         {/* Main Content */}
-        <NotionContent content={content} />
+        <NotionContent content={post.content} />
 
         {/* Back to Blog Link */}
         <div class="mt-12 text-center">

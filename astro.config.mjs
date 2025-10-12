@@ -1,18 +1,16 @@
-// @ts-check
 import { defineConfig } from "astro/config";
+import tsconfigPaths from "vite-tsconfig-paths"; 
 import tailwindcss from "@tailwindcss/vite";
 import react from "@astrojs/react";
 
-// https://astro.build/config
 export default defineConfig({
   integrations: [react()],
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss(), tsconfigPaths()],
     server: {
       allowedHosts: [
         "localhost",
-        "ef9d-88-22-77-144.ngrok-free.app", // tu subdominio actual de Ngrok
       ],
-    },
+    }
   },
 });
