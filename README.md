@@ -45,6 +45,7 @@ Este es mi portfolio personalE construido con [Astro](https://astro.build/), dis
 - [**Visual:** Maxence Portfolio](https://maxence.cc/)
 - [**Visual:** Astrowind](https://github.com/onwidget/astrowind)
 - [**Visual:** Tailwind Flex](https://tailwindflex.com/)
+- [**Colores** Moonlight Glow](https://coolors.co/palette/30343f-fafaff-e4d9ff-273469-1e2749)
 
 ## 📩 Contacto
 

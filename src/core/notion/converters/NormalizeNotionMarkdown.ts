@@ -25,9 +25,9 @@ export function normalizeNotionMarkdown(input: MdInput): string {
 
   // 1) Normaliza finales de línea y caracteres invisibles
   let out = md
-    .replace(/\r\n?/g, "\n") // CRLF/CR -> LF
-    .replace(/\u00A0/g, " ") // NBSP -> espacio normal
-    .replace(/[\u200B-\u200D\uFEFF]/g, ""); // zero-width chars
+    .replaceAll(/\r\n?/g, "\n") // CRLF/CR -> LF
+    .replaceAll("\u00A0", " ") // NBSP -> espacio normal
+    .replaceAll(/[\u200B-\u200D\uFEFF]/g, ""); // zero-width chars
 
   // 2) Normaliza bloques de tabla sin tocar bloques de código
   out = normalizeTables(out);
@@ -69,11 +69,11 @@ function normalizeTables(src: string): string {
     tableBuffer = [];
   };
 
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
+  for (const element of lines) {
+    const line = element;
 
     // Control de bloques de código ```
-    if (/^```/.test(line)) {
+    if (line.startsWith("```")) {
       inCodeFence = !inCodeFence;
       // Si hay una tabla pendiente, la volcamos antes de entrar/salir del código
       flushTable();
@@ -130,7 +130,7 @@ function normalizeTableBlock(block: string): string {
   ) {
     const colCount = rows[0].split("|").length - 2; // ignora bordes
     if (colCount > 0) {
-      const sep = "|" + Array(colCount).fill(" --- ").join("|") + "|";
+      const sep = "|" + new Array(colCount).fill(" --- ").join("|") + "|";
       rows.splice(1, 0, sep);
     }
   }
@@ -146,8 +146,8 @@ function normalizeTableBlock(block: string): string {
       .split("|")
       .map((c) =>
         c
-          .replace(/\s+/g, " ")
-          .replace(/(<br\s*\/?>\s*){2,}/gi, "<br>")
+          .replaceAll(/\s+/g, " ")
+          .replaceAll(/(<br\s*\/?>\s*){2,}/gi, "<br>")
           .trim()
       );
     return `| ${cells.join(" | ")} |`;
@@ -170,7 +170,7 @@ function appendContinuationToRow(prevRow: string, continuation: string): string 
     .map((s) => s.trim());
 
   const lastIdx = parts.length - 1;
-  parts[lastIdx] = `${parts[lastIdx]}<br>${continuation.trim()}`.replace(
+  parts[lastIdx] = `${parts[lastIdx]}<br>${continuation.trim()}`.replaceAll(
     /(<br\s*\/?>\s*){2,}/gi,
     "<br>"
   );
@@ -188,7 +188,7 @@ function collapseBlankLines(src: string): string {
   let blankRun = 0;
 
   for (const line of lines) {
-    if (/^```/.test(line)) {
+    if (line.startsWith("```")) {
       inCode = !inCode;
       blankRun = 0;
       out.push(line);
