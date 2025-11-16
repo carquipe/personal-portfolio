@@ -59,12 +59,12 @@ export default function BlogGrid({ initialPosts, initialCategory = '' }: Props) 
   };
 
   return (
-    <div className="min-h-screen bg-[#f9fafb] pt-24">
+    <div className="min-h-screen bg-base pt-24">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Blog</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <h1 className="text-4xl font-bold text-primary-dark mb-4">Blog</h1>
+          <p className="text-xl text-surface-light max-w-2xl mx-auto">
             Escribo sobre tecnología, desarrollo de software, liderazgo y
             productividad. Mis artículos son una mezcla de reflexiones
             personales, experiencias profesionales y consejos prácticos. ¡Espero
@@ -79,8 +79,8 @@ export default function BlogGrid({ initialPosts, initialCategory = '' }: Props) 
               onClick={() => handleCategoryClick("")}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 !selectedCategory
-                  ? "bg-[#4f46e5] text-white"
-                  : "bg-white text-gray-600 hover:bg-gray-100"
+                  ? "bg-primary text-accent"
+                  : "bg-base text-surface hover:bg-gray-100"
               }`}
             >
               Todos
@@ -91,8 +91,8 @@ export default function BlogGrid({ initialPosts, initialCategory = '' }: Props) 
                 onClick={() => handleCategoryClick(category)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   selectedCategory === category
-                    ? "bg-[#4f46e5] text-white"
-                    : "bg-white text-gray-600 hover:bg-gray-100"
+                    ? "bg-primary text-accent"
+                    : "bg-base text-surface hover:bg-gray-100"
                 }`}
               >
                 {category}
@@ -104,6 +104,7 @@ export default function BlogGrid({ initialPosts, initialCategory = '' }: Props) 
         {/* Grid de posts */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredPosts.map((post) => (
+            
             <a
               key={post.slug}
               href={`/blog/${post.slug}`}
@@ -120,17 +121,17 @@ export default function BlogGrid({ initialPosts, initialCategory = '' }: Props) 
                   </div>
                 )}
                 <div className="p-6">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-2">
+                  <h2 className="text-xl font-semibold text-primary-dark mb-2">
                     {post.title}
                   </h2>
-                  <p className="text-gray-600 mb-4 line-clamp-2">
+                  <p className="text-surface-base mb-4 line-clamp-2">
                     {post.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {post.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-1 bg-gray-100 text-gray-600 text-sm rounded-full"
+                        className="px-2 py-1 bg-primary text-accent text-sm rounded-full"
                       >
                         {tag}
                       </span>
@@ -155,7 +156,7 @@ export default function BlogGrid({ initialPosts, initialCategory = '' }: Props) 
         {/* Mensaje si no hay posts */}
         {filteredPosts.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-600 text-lg">
+            <p className="text-surface-light text-lg">
               {selectedCategory
                 ? `No hay artículos en la categoría "${selectedCategory}".`
                 : "No hay artículos disponibles."}

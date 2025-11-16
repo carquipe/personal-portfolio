@@ -10,24 +10,24 @@ interface Props {
 const { post } = Astro.props;
 ---
 
-<article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-  <a href={`/blog/${post.slug}`} class="block">
+<article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
+  <a href={`/blog/${post.slug}`} class="block flex flex-col flex-1">
     <img
       src={post.coverImage}
       alt={post.title}
       class="w-full h-48 object-cover"
     />
-    <div class="p-6">
+    <div class="p-6 flex-1 flex flex-col relative">
       <div class="flex items-center gap-2 mb-3">
         {post.tags.map((tag) => (
-          <span class="px-2 py-1 text-xs font-medium text-indigo-600 bg-indigo-100 rounded-full">
+          <span class="px-2 py-1 text-xs font-medium text-accent bg-primary-dark rounded-full">
             {tag}
           </span>
         ))}
       </div>
-      <h3 class="text-xl font-semibold text-gray-900 mb-2">{post.title}</h3>
+      <h3 class="text-xl font-semibold text-primary-dark mb-2">{post.title}</h3>
       <p class="text-gray-600 mb-4">{post.description}</p>
-      <div class="flex items-center text-sm text-gray-500">
+      <div class="absolute bottom-6 left-6 right-6 text-sm text-surface-light">
         <time datetime={post.date}>
           {new Date(post.date).toLocaleDateString('es-ES', {
             year: 'numeric',

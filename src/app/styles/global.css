@@ -8,7 +8,7 @@
     url("/src/assets/fonts/Mona-Sans.woff2") format("woff2-variations");
   font-weight: 200 900;
   font-stretch: 75% 125%;
-  font-display: swap; /* This is to load one local font meawhile this font is loading */
+  font-display: swap;
 }
 
 @font-face {
@@ -20,6 +20,31 @@
   font-weight: 200 900;
   font-stretch: 75% 125%;
   font-style: swap;
+}
+
+/* Aquí va tu tema de colores */
+@theme {
+  --color-brand-dark: #30343F;
+  --color-base: #FAFAFF;
+  --color-accent: #E4D9FF;
+  --color-primary: #273469;
+  --color-primary-dark: #1E2749;
+  --color-background: #FAFAFF;
+  --color-surface: #30343F;
+  --color-text-primary: #30343F;
+  --color-text-secondary: #1E2749;
+  --color-surface-light: #8C91A1;
+}
+
+/* Modo oscuro: sobrescribir variables */
+@layer base {
+  .dark {
+    --color-background: #1E2749;
+    --color-surface: #273469;
+    --color-text-primary: #FAFAFF;
+    --color-text-secondary: #E4D9FF;
+    --color-surface-light: #273469; 
+  }
 }
 
 [data-aw-toggle-menu] path {

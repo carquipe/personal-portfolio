@@ -6,7 +6,7 @@ import capgeminiLogo from "@images/logos/capgemini_logo.webp";
 ---
 <!-- TODO: Solve responsive on MD -->
 <div class="flex flex-col">
-    <!-- Efectos de fondo -->
+    Efectos de fondo
     <div class="">
         <div class="overlay-white"></div>
         <div class="full-width-bg"></div>
@@ -21,7 +21,7 @@ import capgeminiLogo from "@images/logos/capgemini_logo.webp";
     <div class="z-10 flex flex-col gap-4">
       <div
         style="font-family: 'Mona Sans', sans-serif;"
-        class="flex text-md font-stretch-150%"
+        class="flex text-md font-stretch-150% text-text-primary"
       >
         Hola 🙋🏼‍♂️ Soy Carlos, tengo 31 años, vivo en Valencia (España) y soy
       </div>
@@ -29,7 +29,7 @@ import capgeminiLogo from "@images/logos/capgemini_logo.webp";
         style="z-10 font-family: 'Hubot Sans', sans-serif;"
         class="flex font-extrabold text-2xl md:text-4xl font-stretch-200% md:leading-12"
       >
-        <p>
+        <p class="text-text-primary">
           Manager IT <br />
           Arquitecto Software <br />
           Desarrollador
@@ -52,7 +52,7 @@ import capgeminiLogo from "@images/logos/capgemini_logo.webp";
 
     justify-center items-center w-full gap-4"
 >
-  <p class="font-light text-md z-10">HE TRABAJADO EN LAS EMPRESAS</p>
+  <p class="font-light text-md z-10 text-text-primary">HE TRABAJADO EN LAS EMPRESAS</p>
   <div class="flex flex-row gap-8">
     <img
       class="z-10 w-40 grayscale hover:grayscale-0"
@@ -75,9 +75,9 @@ import capgeminiLogo from "@images/logos/capgemini_logo.webp";
     width: 100%;
     height: 100%;
     top: -250px;
-    background-color: #ffffff;
+    background-color: var(--color-background);
     background-image: radial-gradient(
-      rgba(73, 72, 72, 0.25) 1.5px,
+      rgb(from var(--color-surface) r g b / 0.25) 1.5px,
       transparent 0
     );
     background-size: 50px 50px;
@@ -91,10 +91,6 @@ import capgeminiLogo from "@images/logos/capgemini_logo.webp";
     width: 100%;
     height: 100%;
     z-index: 1;
-    background: radial-gradient(at top, white,transparent, white)
+    background: radial-gradient(at top, var(--color-background),transparent, white)
 }
-
-  div {
-    font-family: "Hubot Sans", sans-serif;
-  }
 </style>
