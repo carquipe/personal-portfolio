@@ -37,8 +37,8 @@ import capgeminiLogo from "@images/logos/capgemini_logo.webp";
       </div>
 
       <div class="z-10 flex flex-row gap-4 pt-2">
-        <AchievementsButton title="ScaleUps B2B 2023" />
-        <AchievementsButton title="VISA 360PAY Awards 2022" />
+        <AchievementsButton title="ScaleUps B2B 2023"; link="https://noticias.empresaysociedad.org/empresa/ganadores-premios-scaleups-b2b-2023" />
+        <AchievementsButton title="VISA 360PAY Awards 2022"; link="https://thefintechtimes.com/the-pay360-awards-celebrate-another-year-of-leading-uk-payment-innovation/" />
       </div>
     </div>
     <img class="rounded-2xl z-10" src={headerPhoto.src} alt="Description photo" />
@@ -53,17 +53,21 @@ import capgeminiLogo from "@images/logos/capgemini_logo.webp";
     justify-center items-center w-full gap-4"
 >
   <p class="font-light text-md z-10 text-text-primary">HE TRABAJADO EN LAS EMPRESAS</p>
-  <div class="flex flex-row gap-8">
+  <div class="flex items-center flex-row gap-8">
+    <a class="z-10 w-40 grayscale hover:grayscale-0" href="https://crealsa.es">
     <img
-      class="z-10 w-40 grayscale hover:grayscale-0"
+      class=""
       src={crealsaLogo.src}
       alt=""
     />
+    </a>
+    <a class="z-10 w-40 grayscale hover:grayscale-0" href="https://www.capgemini.com/">
     <img
-      class="z-10 w-40 grayscale hover:grayscale-0 pt-2"
+      class=""
       src={capgeminiLogo.src}
       alt=""
     />
+    </a>
   </div>
 </div>
 </div>

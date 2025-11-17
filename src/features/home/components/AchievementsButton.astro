@@ -5,12 +5,13 @@ import TrophyIcon from '@assets/icons/TrophyIcon.astro';
 
 interface Props {
 	title: string;
+    link: string;
 }
 
-const { title } = Astro.props;
+const { title, link } = Astro.props;
 ---
 
-<a class="card bg-accent rounded-md flex" href="#">
+<a class="card bg-accent rounded-md flex" href={link}>
     <div class="group content p-3 flex flex-row gap-x-2">
         <p class="heading"><TrophyIcon sty="size-4" /></p>
         <p class="heading text-xs font-semibold";>{title}</p>
