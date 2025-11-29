@@ -2,23 +2,68 @@
 export interface Props {
   label?: string;
   class?: string;
+  controls?: string;
 }
 
 const {
   label = 'Toggle Menu',
   class: className = 'flex flex-col h-12 w-12 rounded justify-center items-center cursor-pointer group',
+  controls = 'mobile-nav',
 } = Astro.props;
 ---
 
-<label class="flex flex-col gap-2 w-8">
-  <input class="peer hidden" type="checkbox" />
-  <div
-    class="rounded-2xl h-[3px] w-1/2 bg-black duration-500 peer-checked:rotate-[225deg] origin-right peer-checked:-translate-x-[12px] peer-checked:-translate-y-[1px]"
-  ></div>
-  <div
-    class="rounded-2xl h-[3px] w-full bg-black duration-500 peer-checked:-rotate-45"
-  ></div>
-  <div
-    class="rounded-2xl h-[3px] w-1/2 bg-black duration-500 place-self-end peer-checked:rotate-[225deg] origin-left peer-checked:translate-x-[12px] peer-checked:translate-y-[1px]"
-  ></div>
-</label>
+<button
+  type="button"
+  aria-label={label}
+  aria-expanded="false"
+  aria-controls={controls}
+  class={`toggle-button ${className}`}
+  data-mobile-toggle
+>
+  <span class="toggle-line toggle-line--top"></span>
+  <span class="toggle-line toggle-line--middle"></span>
+  <span class="toggle-line toggle-line--bottom"></span>
+</button>
+
+<style>
+  .toggle-button {
+    position: relative;
+    width: 40px;
+    height: 26px;
+  }
+
+  .toggle-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #0f172a;
+    border-radius: 9999px;
+    transition: transform 200ms ease, opacity 200ms ease;
+  }
+
+  .toggle-line--top {
+    top: 0;
+  }
+
+  .toggle-line--middle {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .toggle-line--bottom {
+    bottom: 0;
+  }
+
+  .toggle-button.is-open .toggle-line--top {
+    transform: translateY(12px) rotate(45deg);
+  }
+
+  .toggle-button.is-open .toggle-line--middle {
+    opacity: 0;
+  }
+
+  .toggle-button.is-open .toggle-line--bottom {
+    transform: translateY(-12px) rotate(-45deg);
+  }
+</style>

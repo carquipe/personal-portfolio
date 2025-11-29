@@ -8,7 +8,7 @@ import MailIcon from '@icons/MailIcon.astro'
 ---
 
 <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
-    <div class=" mx-auto h-20 flex items-center justify-between px-4 py-3">
+    <div class="relative mx-auto h-20 flex items-center justify-between px-4 py-3">
 
         <div class="flex items-center justify-between p-2 border-primary border-[1.5px] rounded-md gap-3">
             <a href="#" class="">
@@ -16,8 +16,8 @@ import MailIcon from '@icons/MailIcon.astro'
                 </a>
                 <span class="text-sm text-primary font-semibold sr-only md:not-sr-only">Carlos Quinzá</span>
         </div>
-        <div class="flex items-center md:hidden">
-            <ToggleMenu />
+        <div class="flex items-center md:hidden ml-auto relative z-50">
+            <ToggleMenu controls="mobile-nav" />
         </div>
         <nav class="hidden md:flex">
             <Navigation />
@@ -30,6 +30,18 @@ import MailIcon from '@icons/MailIcon.astro'
         </div>
     </div>
 
+    <div
+        id="mobile-nav"
+        class="mobile-nav hidden md:hidden fixed top-0 right-0 h-screen w-72 max-w-[80vw] bg-white border-l border-slate-200 shadow-2xl px-4 py-6 pt-24 overflow-y-auto z-40"
+    >
+        <Navigation vertical />
+        <div class="mt-4">
+            <a class="relative flex w-full justify-center py-3 px-4 border-[1.5px] text-primary-dark text-base font-bold overflow-hidden bg-base rounded-md transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-primary hover:shadow-lg active:scale-95 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-accent before:to-accent before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-md hover:before:left-0" href="/#contact">
+                <MailIcon/> 
+            </a>  
+        </div>
+    </div>
+
 </header>
 
 <style>
@@ -37,8 +49,77 @@ import MailIcon from '@icons/MailIcon.astro'
         font-family: 'Hubot Sans', sans-serif;
     }
 
+    .mobile-nav .nav-links {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .mobile-nav .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 0.6rem 0.4rem;
+        border-radius: 0.6rem;
+        transition: background-color 150ms ease, transform 150ms ease;
+    }
+
+    .mobile-nav .nav-links a:hover {
+        background: #f3f4f6;
+        transform: translateX(4px);
+    }
 
 </style>
+
+<script>
+  if (typeof window !== 'undefined') {
+    window.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.querySelector('[data-mobile-toggle]');
+      const menu = document.getElementById('mobile-nav');
+
+      if (!toggle || !menu) return;
+
+      let isOpen = false;
+
+      const closeMenu = () => {
+        isOpen = false;
+        toggle.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.classList.add('hidden');
+        menu.setAttribute('data-open', 'false');
+      };
+
+      toggle.addEventListener('click', () => {
+        if (isOpen) {
+          closeMenu();
+          return;
+        }
+        isOpen = true;
+        toggle.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+        menu.classList.remove('hidden');
+        menu.setAttribute('data-open', 'true');
+      });
+
+      menu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMenu);
+      });
+
+      // Fallback delegation to ensure any new links also close the menu
+      menu.addEventListener('click', (event) => {
+        const target = event.target as HTMLElement | null;
+        if (target?.closest('a')) {
+          closeMenu();
+        }
+      });
+
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) {
+          closeMenu();
+        }
+      });
+    });
+  }
+</script>
 
 
 <!-- 

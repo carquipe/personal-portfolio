@@ -1,4 +1,10 @@
 ---
+export interface Props {
+  vertical?: boolean;
+}
+
+const { vertical = false } = Astro.props;
+
 const navItems = [
   { name: "Inicio", href: "/" },
   { name: "Proyectos", href: "/#achievements" },
@@ -7,7 +13,7 @@ const navItems = [
 ];
 ---
 
-<div class="flex nav-links space-x-15">
+<div class={`flex nav-links ${vertical ? "nav-links-vertical" : "space-x-15"}`}>
   {
     navItems.map((item, i) => (
       <a
@@ -36,5 +42,10 @@ const navItems = [
   .fade-in-up {
     opacity: 0; /* Inicialmente oculto */
     animation: fadeInUp 1s forwards;
+  }
+
+  .nav-links-vertical {
+    flex-direction: column;
+    gap: 0.75rem;
   }
 </style>
