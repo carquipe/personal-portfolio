@@ -104,13 +104,12 @@ export default function BlogGrid({ initialPosts, initialCategory = '' }: Props) 
         {/* Grid de posts */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredPosts.map((post) => (
-            
             <a
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group"
+              className="group h-full"
             >
-              <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 group-hover:scale-105">
+              <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 group-hover:scale-105 flex flex-col h-full">
                 {post.coverImage && (
                   <div className="relative h-48">
                     <img
@@ -120,8 +119,8 @@ export default function BlogGrid({ initialPosts, initialCategory = '' }: Props) 
                     />
                   </div>
                 )}
-                <div className="p-6">
-                  <h2 className="text-xl font-semibold text-primary-dark mb-2">
+                <div className="p-6 flex flex-col h-full">
+                  <h2 className="text-xl font-semibold text-primary-dark mb-2 line-clamp-2">
                     {post.title}
                   </h2>
                   <p className="text-surface-base mb-4 line-clamp-2">
@@ -137,16 +136,18 @@ export default function BlogGrid({ initialPosts, initialCategory = '' }: Props) 
                       </span>
                     ))}
                   </div>
-                  <time
-                    dateTime={post.date}
-                    className="block mt-4 text-sm text-gray-500"
-                  >
-                    {new Date(post.date).toLocaleDateString('es-ES', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })}
-                  </time>
+                  <div className="mt-auto pt-4">
+                    <time
+                      dateTime={post.date}
+                      className="block text-sm text-gray-500"
+                    >
+                      {new Date(post.date).toLocaleDateString('es-ES', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                    </time>
+                  </div>
                 </div>
               </div>
             </a>

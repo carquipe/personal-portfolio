@@ -9,7 +9,12 @@ let cachedPosts: NotionBlogPost[] | null = null;
  */
 export async function getAllPosts(): Promise<NotionBlogPost[]> {
   if (!cachedPosts) {
-    cachedPosts = await BlogRepository.getPublishedPosts();
+    try {
+      cachedPosts = await BlogRepository.getPublishedPosts();
+    } catch (error) {
+      console.error("Failed to fetch blog posts, continuing with empty list.", error);
+      cachedPosts = [];
+    }
   }
   return cachedPosts;
 }
