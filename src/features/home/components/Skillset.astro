@@ -2,7 +2,7 @@
 import SelfAvatar from "@images/personal_images/personal.webp";
 ---
 
-<section class="flex flex-col bg-base py-20 px-20 gap-10 w-full">
+<section class="flex flex-col bg-base py-20 px-5 md:px-20 gap-10 w-full">
   <div class="grid sm:grid-cols-1 lg:grid-cols-3 gap-10">
     <div
       class="relative h-full w-full flex items-center justify-center col-span-1"
@@ -112,32 +112,32 @@ import SelfAvatar from "@images/personal_images/personal.webp";
     <div class="grid gap-4 md:grid-cols-3 col-span-2 grid-cols-2">
       <div class="card">
         <div class="content">
-          <div class="name">Control de Presupuestos</div>
+          <div class="name text-md md:text-xl">Control de Presupuestos</div>
         </div>
       </div>
 
       <div class="card">
         <div class="content">
-          <div class="name">Regulación IT</div>
+          <div class="name text-md md:text-xl">Regulación IT</div>
         </div>
       </div>
       <div class="card">
         <div class="content">
-          <div class="name">Captación de Talento</div>
+          <div class="name text-md md:text-xl">Captación de Talento</div>
         </div>
       </div>
       <div class="card">
         <div class="content">
-          <div class="name">Liderazgo de Equipos</div>
+          <div class="name text-md md:text-xl">Liderazgo de Equipos</div>
         </div>
       </div>
       <div class="card">
-        <div class="content">
+        <div class="content text-md md:text-xl">
           <div class="name">Gestión de Proyectos</div>
         </div>
       </div>
       <div class="card">
-        <div class="content">
+        <div class="content text-md md:text-xl">
           <div class="name">Definición de Estrategia</div>
         </div>
       </div>
@@ -167,21 +167,8 @@ import SelfAvatar from "@images/personal_images/personal.webp";
   }
 
   .card .name {
-    font-size: clamp(0.6rem, 1.2vw + 0.4rem, 1.2rem);
     font-weight: bold;
     margin-bottom: 20px;
     line-height: 1.2;
-  }
-
-  @media (max-width: 768px) {
-    .card .name {
-      font-size: clamp(0.5rem, 1vw + 0.3rem, 1rem);
-    }
-  }
-
-  @media (max-width: 480px) {
-    .card .name {
-      font-size: clamp(0.4rem, 0.8vw + 0.2rem, 0.8rem);
-    }
   }
 </style>
