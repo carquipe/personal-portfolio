@@ -1,6 +1,7 @@
 ---
 
 const { title, description, company } = Astro.props;
+import JobItemIcon from '@assets/icons/JobItemIcon.astro';
 
 ---
         <!-- Item -->
@@ -8,7 +9,7 @@ const { title, description, company } = Astro.props;
             <!-- Icon -->
             <div class="relative last:after:hidden after:absolute after:top-7 after:bottom-0 after:start-3.5 after:w-px after:-translate-x-[0.5px] after:bg-gray-200">
                 <div class="relative z-10 size-7 flex justify-center items-center">
-                <img class="shrink-0 size-7 rounded-full" src="https://images.unsplash.com/photo-1659482633369-9fe69af50bfb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=3&w=320&h=320&q=80" alt="Avatar">
+                <JobItemIcon sty="shrink-0 size-7 rounded-full" alt="Avatar" />
                 </div>
             </div>
             <!-- End Icon -->
