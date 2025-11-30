@@ -1,6 +1,6 @@
 # 🚀 Mi Portfolio en Astro
 
-Este es mi portfolio personalE construido con [Astro](https://astro.build/), diseñado para mostrar mis proyectos, habilidades y experiencia de una manera rápida y accesible.
+Este es mi portfolio personal construido con [Astro](https://astro.build/) y [React](https://es.react.dev/), diseñado para mostrar mis proyectos, habilidades y experiencia de una manera rápida y accesible.
 
 ## ▶️ Vista Previa
 
@@ -9,7 +9,6 @@ Este es mi portfolio personalE construido con [Astro](https://astro.build/), dis
 ## ✨ Características
 
 - 📝 Gestión de contenido de Blog con Notion
-- 🌓 Modo oscuro / claro
 - 🎨 Diseño responsive
 
 ### Fuentes
@@ -20,6 +19,9 @@ Este es mi portfolio personalE construido con [Astro](https://astro.build/), dis
 ### Patrones usados
 
 - Definición de alias para paths en `astro.config.mjs`
+- Sobreescritura de colores en tailwind.config.cjs
+- Uso de `astro:assets` para optimización de imágenes
+- Uso de `astro:mdx` para contenido en MDX
 
 ## ⚒️ Tecnologías
 
