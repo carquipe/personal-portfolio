@@ -28,7 +28,15 @@ if (!post) {
 const { title, date, tags, coverImage, content, description } = post;
 ---
 
-<Layout title={post.title}>
+<Layout 
+  title={post.title}
+  description={post.description}
+  image={post.coverImage}
+  type="article"
+  date={post.date}
+  tags={post.tags}
+  url={`/blog/${post.slug}`}
+>
   <div class="min-h-screen bg-[#f9fafb] pt-24">
     {/* Hero section */}
     <div class="relative h-[50vh] min-h-[400px] w-full overflow-hidden">

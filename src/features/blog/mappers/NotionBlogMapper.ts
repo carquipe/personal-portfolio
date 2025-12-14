@@ -6,7 +6,7 @@ import type { NotionBlogPost } from "../models/NotionBlogPost";
  */
 export function mapPageToBlogPost(page: any, contentString: string): NotionBlogPost {
   const props = page.properties;
-
+  
   const title =
     props.Titulo?.title?.[0]?.plain_text ??
     props.Name?.title?.[0]?.plain_text ??

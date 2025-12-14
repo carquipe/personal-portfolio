@@ -1,6 +1,7 @@
 ---
 import Header from '@shared/components/Header.astro'
 import Footer from '@shared/components/Footer.astro'
+import SEOHead from '@shared/components/SEOHead.astro'
 import "@styles/global.css";
 //  import "@styles/katex.min.css";
 //  import "@styles/prism.css";
@@ -8,23 +9,44 @@ import "@styles/global.css";
 
 import { ClientRouter } from 'astro:transitions';
 
-
-
 interface Props {
 	title: string;
+	description?: string;
+	image?: string;
+	type?: 'website' | 'article';
+	date?: string;
+	tags?: string[];
+	url?: string;
 }
 
-const { title } = Astro.props;
+const { 
+	title, 
+	description = 'Portfolio personal de Carlos Quinzá - Desarrollador Full Stack especializado en JavaScript, TypeScript, React y Astro.',
+	image,
+	type = 'website',
+	date,
+	tags = [],
+	url
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<SEOHead 
+			title={title}
+			description={description}
+			image={image}
+			type={type}
+			date={date}
+			tags={tags}
+			url={url}
+		/>
 		<ClientRouter fallback="swap" />
 	</head>
 	<body>
