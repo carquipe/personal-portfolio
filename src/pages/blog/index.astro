@@ -1,18 +1,31 @@
 ---
 import Layout from '@app/layout/Layout.astro';
+import StructuredData from '@shared/components/StructuredData.astro';
 import { getAllPosts } from "@content/blog";
 import BlogGrid from '@features/blog/utils/BlogGrid';
 
 const posts = await getAllPosts();
 const selectedCategory = Astro.url.searchParams.get('category') || '';
+
+// Datos para el schema Breadcrumb
+const siteUrl = Astro.site?.href || 'https://carlosquinza.es';
+const breadcrumbStructuredData = {
+  breadcrumbs: [
+    { name: 'Inicio', url: siteUrl },
+    { name: 'Blog', url: `${siteUrl}/blog` }
+  ]
+};
 ---
 
 <Layout 
   title="Blog | Carlos Quinzá"
-  description="Artículos sobre desarrollo web, programación, JavaScript, TypeScript, React, Astro y las últimas tendencias en tecnología."
+  description="Escribo sobre tecnología, desarrollo de software, liderazgo y productividad."
   type="website"
   url="/blog"
 >
+  <!-- Structured Data -->
+  <StructuredData type="BreadcrumbList" data={breadcrumbStructuredData} />
+
   <div class="min-h-screen bg-base pt-24">
     <div class="container mx-auto px-4">
 

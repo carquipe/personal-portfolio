@@ -1,16 +1,62 @@
 ---
 import Layout from "@app/layout/Layout.astro";
-import ContactForm from "@features/home/components/ContactForm.astro";
+import StructuredData from '@shared/components/StructuredData.astro';
 import Home from "@features/home/pages/Home.astro";
+
+// Datos para el schema Person
+const siteUrl = Astro.site?.href || 'https://carlosquinza.es';
+
+const personStructuredData = {
+  name: 'Carlos Quinzá',
+  url: siteUrl,
+  jobTitle: 'Tech Lead',
+  description: 'Manager IT, Desarrollador y Arquitecto Software con más de 10 años de experiencia',
+  image: `${siteUrl}/images/personal_images/personal.webp`,
+  sameAs: [
+    'https://github.com/carquipe',
+    'https://linkedin.com/in/carlosquinza'
+  ],
+  knowsAbout: [
+    'JavaScript',
+    'Azure',
+    'Java',
+    'Astro',
+    'Angular',
+    'C#',
+    'Frontend',
+    'Backend',
+    'Full Stack',
+    'Angular',
+    'SQL',
+    'Presupuestos IT',
+    'Estrategia IT',
+    'Liderazgo Equipos IT'
+  ],
+  addressCountry: 'España'
+};
+
+// Datos para el schema Website
+const websiteStructuredData = {
+  name: 'Carlos Quinzá - Portfolio Personal',
+  description: 'Portfolio personal de Carlos Quinzá. En esta web está mi información general así como posts de blog sobre Arquitectura Software, Management de IT y Desarrollo.', 
+  url: siteUrl,
+  authorName: 'Carlos Quinzá',
+  publisherName: 'Carlos Quinzá - Portfolio',
+  inLanguage: 'es-ES'
+};
 ---
 
 <Layout 
-  title="Carlos Quinzá - Desarrollador Full Stack"
-  description="Portfolio personal de Carlos Quinzá. Desarrollador Full Stack especializado en JavaScript, TypeScript, React, Astro y las mejores prácticas de desarrollo web moderno."
+  title="Carlos Quinzá - Portfolio Personal"
+  description="Portfolio personal de Carlos Quinzá. En esta web está mi información general así como posts de blog sobre Arquitectura Software, Management de IT y Desarrollo."
   image="/images/personal_images/personal.webp"
   type="website"
   url="/"
 >
+	<!-- Structured Data -->
+	<StructuredData type="Person" data={personStructuredData} />
+	<StructuredData type="Website" data={websiteStructuredData} />
+
 	<Home />
 </Layout>
 

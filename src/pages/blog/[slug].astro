@@ -1,6 +1,7 @@
 ---
 import Layout from '@app/layout/Layout.astro';
 import NotionContent from '@features/blog/pages/NotionContent.astro';
+import StructuredData from '@shared/components/StructuredData.astro';
 import { getAllPosts } from "@content/blog";
 import type { NotionBlogPost } from '@features/blog/models/NotionBlogPost';
 
@@ -26,6 +27,36 @@ if (!post) {
 
 // Asegurarnos de que tenemos todos los datos necesarios
 const { title, date, tags, coverImage, content, description } = post;
+
+// Datos para el schema Article
+const siteUrl = Astro.site?.href || 'https://carlosquinza.dev';
+const articleUrl = `${siteUrl}/blog/${post.slug}`;
+const formattedDate = new Date(post.date).toISOString();
+
+const articleStructuredData = {
+  headline: post.title,
+  description: post.description,
+  image: post.coverImage || `${siteUrl}/images/personal_images/personal.webp`,
+  datePublished: formattedDate,
+  dateModified: formattedDate,
+  authorName: 'Carlos Quinzá',
+  authorUrl: siteUrl,
+  publisherName: 'Carlos Quinzá - Portfolio',
+  publisherLogo: `${siteUrl}/images/personal_images/personal.webp`,
+  url: articleUrl,
+  keywords: post.tags,
+  articleSection: 'Tecnología',
+  inLanguage: 'es-ES'
+};
+
+// Datos para el schema Breadcrumb
+const breadcrumbStructuredData = {
+  breadcrumbs: [
+    { name: 'Inicio', url: siteUrl },
+    { name: 'Blog', url: `${siteUrl}/blog` },
+    { name: post.title, url: articleUrl }
+  ]
+};
 ---
 
 <Layout 
@@ -37,6 +68,10 @@ const { title, date, tags, coverImage, content, description } = post;
   tags={post.tags}
   url={`/blog/${post.slug}`}
 >
+  <!-- Structured Data -->
+  <StructuredData type="Article" data={articleStructuredData} />
+  <StructuredData type="BreadcrumbList" data={breadcrumbStructuredData} />
+
   <div class="min-h-screen bg-[#f9fafb] pt-24">
     {/* Hero section */}
     <div class="relative h-[50vh] min-h-[400px] w-full overflow-hidden">

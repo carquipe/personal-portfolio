@@ -1,0 +1,159 @@
+---
+/**
+ * Componente para generar datos estructurados JSON-LD
+ */
+
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+interface ArticleData extends Record<string, unknown> {
+  headline: string;
+  description: string;
+  image: string;
+  datePublished: string;
+  dateModified?: string;
+  authorName: string;
+  authorUrl: string;
+  publisherName: string;
+  publisherLogo: string;
+  url: string;
+  keywords?: string[];
+  articleSection?: string;
+  inLanguage?: string;
+}
+
+interface PersonData extends Record<string, unknown> {
+  name: string;
+  url: string;
+  jobTitle: string;
+  description: string;
+  image?: string;
+  sameAs?: string[];
+  knowsAbout?: string[];
+  worksFor?: string;
+  address?: string;
+  addressCountry?: string;
+}
+
+interface WebsiteData extends Record<string, unknown> {
+  name: string;
+  description: string;
+  url: string;
+  authorName: string;
+  publisherName: string;
+  inLanguage?: string;
+}
+
+interface BreadcrumbData extends Record<string, unknown> {
+  breadcrumbs: BreadcrumbItem[];
+}
+
+interface Props {
+  type: 'Article' | 'Person' | 'Website' | 'BreadcrumbList';
+  data: ArticleData | PersonData | WebsiteData | BreadcrumbData;
+}
+
+const { type, data } = Astro.props;
+
+const generateJsonLd = (schema: Record<string, unknown>): string => {
+  return JSON.stringify(schema, null, 2);
+};
+
+/**
+ * Schemas predefinidos según el tipo
+ */
+const schemas = {
+  Article: (data: ArticleData) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: data.headline,
+    description: data.description,
+    image: data.image,
+    datePublished: data.datePublished,
+    dateModified: data.dateModified || data.datePublished,
+    author: {
+      '@type': 'Person',
+      name: data.authorName,
+      url: data.authorUrl
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: data.publisherName,
+      logo: {
+        '@type': 'ImageObject',
+        url: data.publisherLogo
+      }
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': data.url
+    },
+    keywords: data.keywords,
+    articleSection: data.articleSection,
+    inLanguage: data.inLanguage || 'es-ES'
+  }),
+
+  Person: (data: Record<string, unknown>) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: data.name,
+    url: data.url,
+    jobTitle: data.jobTitle,
+    description: data.description,
+    image: data.image,
+    sameAs: data.sameAs,
+    knowsAbout: data.knowsAbout,
+    worksFor: data.worksFor ? {
+      '@type': 'Organization',
+      name: data.worksFor
+    } : undefined,
+    address: data.address ? {
+      '@type': 'PostalAddress',
+      addressCountry: data.addressCountry
+    } : undefined
+  }),
+
+  Website: (data: Record<string, unknown>) => ({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: data.name,
+    description: data.description,
+    url: data.url,
+    inLanguage: data.inLanguage || 'es-ES',
+    author: {
+      '@type': 'Person',
+      name: data.authorName
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: data.publisherName
+    },
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${data.url}/blog?search={search_term_string}`,
+      'query-input': 'required name=search_term_string'
+    }
+  }),
+
+  BreadcrumbList: (data: Record<string, unknown>) => {
+    const breadcrumbs = data.breadcrumbs as Array<Record<string, unknown>>;
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: breadcrumbs?.map((breadcrumb: Record<string, unknown>, index: number) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: breadcrumb.name,
+        item: breadcrumb.url
+      }))
+    };
+  }
+};
+
+// Generar schema específico con type safety
+const schema = schemas[type](data);
+---
+
+<script type="application/ld+json" is:inline set:html={generateJsonLd(schema)}></script>
