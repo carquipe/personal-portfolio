@@ -64,7 +64,7 @@ const generateJsonLd = (schema: Record<string, unknown>): string => {
 /**
  * Schemas predefinidos según el tipo
  */
-const schemas = {
+const schemas: Record<string, (data: any) => any> = {
   Article: (data: ArticleData) => ({
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -153,7 +153,7 @@ const schemas = {
 };
 
 // Generar schema específico con type safety
-const schema = schemas[type](data);
+const schema = schemas[type as keyof typeof schemas](data as any);
 ---
 
 <script type="application/ld+json" is:inline set:html={generateJsonLd(schema)}></script>
