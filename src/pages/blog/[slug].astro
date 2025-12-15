@@ -29,7 +29,7 @@ if (!post) {
 const { title, date, tags, coverImage, content, description } = post;
 
 // Datos para el schema Article
-const siteUrl = Astro.site?.href || 'https://carlosquinza.dev';
+const siteUrl = Astro.site?.href || 'https://carlosquinza.es';
 const articleUrl = `${siteUrl}/blog/${post.slug}`;
 const formattedDate = new Date(post.date).toISOString();
 

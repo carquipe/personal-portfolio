@@ -9,6 +9,7 @@ interface Props {
 	url?: string;
 	author?: string;
 	siteName?: string;
+	robots?: 'index,follow' | 'noindex,nofollow' | 'index,nofollow' | 'noindex,follow';
 }
 
 const {
@@ -20,11 +21,12 @@ const {
 	tags = [],
 	url,
 	author = 'Carlos Quinzá',
-	siteName = 'Carlos Quinzá - Portfolio Personal'
+	siteName = 'Carlos Quinzá - Portfolio Personal',
+	robots = 'index,follow'
 } = Astro.props;
 
 // URL base del sitio
-const siteUrl = Astro.site?.href || 'https://carlosquinza.dev';
+const siteUrl = Astro.site?.href || 'https://carlosquinza.es';
 const currentUrl = url ? `${siteUrl}${url}` : siteUrl;
 
 // Imagen por defecto si no se proporciona
@@ -42,7 +44,7 @@ const formattedDate = date ? new Date(date).toISOString() : '';
 <meta name="description" content={description} />
 <meta name="keywords" content={keywords} />
 <meta name="author" content={author} />
-<meta name="robots" content="index, follow" />
+<meta name="robots" content={robots} />
 <meta name="language" content="es" />
 
 <!-- Open Graph / Facebook -->
