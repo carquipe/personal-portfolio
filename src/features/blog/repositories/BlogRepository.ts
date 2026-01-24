@@ -1,4 +1,5 @@
 // src/features/blog/repositories/BlogRepository.ts
+import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import { queryDatabase } from "@core/notion/services/NotionDatabaseService";
 import { pageToMarkdown } from "@core/notion/converters/NotionMarkdown";
 
@@ -7,11 +8,17 @@ import { mapPageToBlogPost } from "../mappers/NotionBlogMapper";
 import { markdownToHtml } from "@core/notion/converters/NotionMarkdownHtml";
 import { normalizeNotionMarkdown } from "@core/notion/converters/NormalizeNotionMarkdown";
 
-const databaseId = import.meta.env.NOTION_DATABASE_ID!;
+function getDatabaseId(): string {
+  const id = import.meta.env.NOTION_DATABASE_ID;
+  if (!id) {
+    throw new Error("NOTION_DATABASE_ID environment variable is required");
+  }
+  return id;
+}
 
 export class BlogRepository {
-
   static async getPublishedPosts(): Promise<NotionBlogPost[]> {
+    const databaseId = getDatabaseId();
     const response = await queryDatabase(
       databaseId,
       {
@@ -26,16 +33,16 @@ export class BlogRepository {
     if (!response.results?.length) return [];
 
     const posts = await Promise.all(
-      response.results.map(async (page: any) => {
-        const markdown = await pageToMarkdown(page.id);
+      response.results.map(async (page) => {
+        const pageObj = page as PageObjectResponse;
+        const markdown = await pageToMarkdown(pageObj.id);
 
-        const cleanedMd =  normalizeNotionMarkdown( [markdown.parent, ...(markdown.children || [])]
-        .join("\n\n")
+        const cleanedMd = normalizeNotionMarkdown(
+          [markdown.parent, ...(markdown.children || [])].join("\n\n")
         );
 
-        console.log(cleanedMd);
         const contentString = await markdownToHtml(cleanedMd);
-        return mapPageToBlogPost(page, contentString);
+        return mapPageToBlogPost(pageObj, contentString);
       })
     );
 

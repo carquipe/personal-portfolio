@@ -8,7 +8,7 @@ import MailIcon from "@assets/icons/MailIcon.astro";
 
 <section class="relative flex flex-col items-center justify-center gap-8 h-[175dvh] overflow-hidden ">
     <div class="absolute w-full h-full">
-        <dir class="white-filter -z-10"></dir>
+        <div class="white-filter -z-10"></div>
         <div class="absolute grid-overlay -z-20"></div>
     </div>
     <MailIcon />
@@ -96,51 +96,23 @@ import MailIcon from "@assets/icons/MailIcon.astro";
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
 
-  // Animación para el Elemento 1: se mueve hacia arriba
-  gsap.to(".item1", {
-    y: -200, // mueve 50px hacia arriba
+  const parallaxConfig = {
+    y: -200,
     ease: "none",
     scrollTrigger: {
-      trigger: ".item1",
       start: "top bottom",
       end: "bottom top",
       scrub: true,
     }
-  });
+  };
 
-  // Animación para el Elemento 2: se mueve hacia abajo
-  gsap.to(".item2", {
-    y: -200, // mueve 50px hacia abajo
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".item2",
-      start: "top bottom",
-      end: "bottom top",
-      scrub: true,
-    }
-  });
-
-  // Animación para el Elemento 3: se mueve hacia la izquierda
-  gsap.to(".item3", {
-    y: -200, // mueve 50px hacia la izquierda
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".item3",
-      start: "top bottom",
-      end: "bottom top",
-      scrub: true,
-    }
-  });
-
-  // Animación para el Elemento 4: se mueve hacia la derecha
-  gsap.to(".item4", {
-    y: -200, // mueve 50px hacia la derecha
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".item4",
-      start: "top bottom",
-      end: "bottom top",
-      scrub: true,
-    }
+  [".item1", ".item2", ".item3", ".item4"].forEach((selector) => {
+    gsap.to(selector, {
+      ...parallaxConfig,
+      scrollTrigger: {
+        ...parallaxConfig.scrollTrigger,
+        trigger: selector,
+      }
+    });
   });
 </script>

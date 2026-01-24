@@ -2,7 +2,7 @@
 import Layout from '@app/layout/Layout.astro';
 import StructuredData from '@shared/components/StructuredData.astro';
 import { getAllPosts } from "@content/blog";
-import BlogGrid from '@features/blog/utils/BlogGrid';
+import BlogGrid from '@features/blog/components/BlogGrid';
 
 const posts = await getAllPosts();
 const selectedCategory = Astro.url.searchParams.get('category') || '';

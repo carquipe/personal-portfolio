@@ -1,11 +1,15 @@
+import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import type { NotionBlogPost } from "../models/NotionBlogPost";
 
 /**
  * Maps a raw Notion page and its Markdown content
  * to a clean NotionBlogPost domain model.
  */
-export function mapPageToBlogPost(page: any, contentString: string): NotionBlogPost {
-  const props = page.properties;
+export function mapPageToBlogPost(
+  page: PageObjectResponse,
+  contentString: string
+): NotionBlogPost {
+  const props = page.properties as Record<string, unknown>;
   
   const title =
     props.Titulo?.title?.[0]?.plain_text ??
@@ -47,7 +51,7 @@ export function mapPageToBlogPost(page: any, contentString: string): NotionBlogP
 /**
  * Extracts a usable cover image URL from the Notion page.
  */
-function getCoverImage(page: any): string {
+function getCoverImage(page: PageObjectResponse): string {
   const cover = page.cover;
   if (!cover) return "";
   if (cover.type === "external") return cover.external.url;

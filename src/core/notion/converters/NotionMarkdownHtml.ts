@@ -7,17 +7,14 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 /**
  * Accepts either a plain markdown string or a `MdStringObject`
- * returned by notion-to-md’s `toMarkdownString()`.
+ * returned by notion-to-md's `toMarkdownString()`.
  */
 export async function markdownToHtml(
   markdownInput: string
 ): Promise<string> {
-  
-  console.log(markdownInput);
-
   const result = await remark()
     .use(remarkGfm)
-    .use(html, { sanitize: false })
+    .use(html, { sanitize: true })
     .use(rehypeSlug)
     .use(rehypeAutolinkHeadings)
     .process(markdownInput);
