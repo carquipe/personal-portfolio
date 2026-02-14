@@ -5,7 +5,7 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: 'https://carlosquinza.es',
+  site: 'https://www.carlosquinza.es',
   integrations: [
     react(),
     sitemap({

@@ -26,12 +26,16 @@ const {
 } = Astro.props;
 
 // URL base del sitio
-const siteUrl = Astro.site?.href || 'https://carlosquinza.es';
-const currentUrl = url ? `${siteUrl}${url}` : siteUrl;
+const siteUrl = Astro.site?.href || 'https://www.carlosquinza.es';
+const baseUrl = siteUrl.replace(/\/$/, ''); // Remove trailing slash
+const currentUrl = url ? `${baseUrl}${url}` : baseUrl;
 
 // Imagen por defecto si no se proporciona
-const defaultImage = `${siteUrl}/images/personal_images/personal.webp`;
-const ogImage = image || defaultImage;
+const defaultImage = `${baseUrl}/images/personal_images/personal.webp`;
+// Convert relative image paths to absolute URLs for social media
+const ogImage = image
+  ? (image.startsWith('http') ? image : `${baseUrl}${image}`)
+  : defaultImage;
 
 // Generar keywords desde tags
 const keywords = tags.length > 0 ? tags.join(', ') : 'desarrollo web, frontend, backend, javascript, typescript, react, astro, portfolio';

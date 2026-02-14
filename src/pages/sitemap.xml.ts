@@ -50,16 +50,17 @@ const generateUrlEntry = (entry: SitemapEntry): string => {
  * @returns Array de entradas del sitemap
  */
 const getStaticPages = (siteUrl: string): SitemapEntry[] => {
+  const now = new Date().toISOString();
   return [
     {
       url: siteUrl,
-      lastmod: new Date().toISOString(),
+      lastmod: now,
       changefreq: 'weekly',
       priority: 1.0
     },
     {
       url: `${siteUrl}/blog`,
-      lastmod: new Date().toISOString(),
+      lastmod: now,
       changefreq: 'daily',
       priority: 0.9
     }
@@ -92,7 +93,7 @@ const getBlogPosts = async (siteUrl: string): Promise<SitemapEntry[]> => {
  * @returns String con el XML del sitemap
  */
 export async function GET() {
-  const siteUrl = 'https://carlosquinza.es';
+  const siteUrl = 'https://www.carlosquinza.es';
   
   // Generar sitemap completo
   const staticPages = getStaticPages(siteUrl);

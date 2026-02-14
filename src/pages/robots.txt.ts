@@ -58,7 +58,7 @@ Disallow: /
  * Endpoint para servir robots.txt
  */
 export function GET() {
-  const siteUrl = 'https://carlosquinza.es';
+  const siteUrl = 'https://www.carlosquinza.es';
   const robotsContent = generateRobotsTxt(siteUrl);
 
   return new Response(robotsContent, {
