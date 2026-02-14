@@ -13,7 +13,7 @@
       "@images/*": ["./src/assets/images/*"],
       "@icons/*": ["./src/assets/icons/*"],
       "@fonts/*": ["./src/assets/fonts/*"],
-      "@notion/*": ["./src/core/notion/*"],
+      "@markdown/*": ["./src/core/markdown/*"],
       "@content/*": ["./src/content/*"]
     },
     "allowJs": true,

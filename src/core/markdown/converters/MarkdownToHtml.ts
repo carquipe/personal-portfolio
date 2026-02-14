@@ -1,4 +1,3 @@
-// src/core/notion/converters/NotionHtml.ts
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
 import html from "remark-html";
@@ -6,12 +5,9 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 /**
- * Accepts either a plain markdown string or a `MdStringObject`
- * returned by notion-to-md's `toMarkdownString()`.
+ * Converts markdown string to HTML with GitHub Flavored Markdown support
  */
-export async function markdownToHtml(
-  markdownInput: string
-): Promise<string> {
+export async function markdownToHtml(markdownInput: string): Promise<string> {
   const result = await remark()
     .use(remarkGfm)
     .use(html, { sanitize: true })

@@ -1,19 +1,13 @@
 ---
-import "@notion-render/client/dist/theme.css";
-import { markdownToHtml } from "@notion/converters/NotionMarkdownHtml";
-
 interface Props {
   content: string;
 }
 
 const { content } = Astro.props;
-
-const processedContent = await markdownToHtml(content);
-
 ---
 
 <div class="notion-content prose prose-lg max-w-none">
-  <Fragment set:html={processedContent} />
+  <Fragment set:html={content} />
 </div>
 
 <style is:global>
